@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+class CrosswordsGenerator {
+	
+	init() {
+	}
+	
+	init(columns: Int, rows: Int, maxLoops: Int = 2000, words: Array<String>) {
+		
+	}
+	
+	func generate() {
+		
+	}
+	
+}
