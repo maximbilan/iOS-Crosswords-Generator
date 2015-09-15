@@ -44,13 +44,62 @@ class CrosswordsGenerator {
 	}
 	
 	func suggestCoord(word: String) -> Array<Array<Int>> {
-		var count = 0
-		var coorlist = Array<Int>(arrayLiteral: 4)
-		return Array<Array<Int>>()
+		
+		var coordlist = Array<Array<Int>>()
+		var glc = -1
+		
+		for letter in word.characters {
+			glc += 1
+			var rowc = 0
+			for (var row: Int = 0; row < self.rows; ++row) {
+				rowc += 1
+				var colc = 0
+				for (var column: Int = 0; column < self.columns; ++column) {
+					colc += 1
+					
+					let cell = self.grid![row, column]
+					if String(letter) == cell {
+						if rowc - glc > 0 {
+							if ((rowc - glc) + word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)) <= self.rows {
+								coordlist.append([colc, rowc - glc, 1, colc + (rowc - glc), 0])
+							}
+						}
+						
+						if colc - glc > 0 {
+							if ((colc - glc) + word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)) <= self.columns {
+								coordlist.append([colc - glc, rowc, 0, rowc + (colc - glc), 0])
+							}
+						}
+					}
+				}
+			}
+			
+		}
+		
+		let nCoordlist = sortCoordlist(coordlist, word: word)
+		
+		return nCoordlist
 	}
 	
-	func sortCoorlist(coordlist: Array<Array<Int>>, word: String) {
+//	new_coordlist = []
+//	for coord in coordlist:
+//	col, row, vertical = coord[0], coord[1], coord[2]
+//	coord[4] = self.check_fit_score(col, row, vertical, word) # checking scores
+//	if coord[4]: # 0 scores are filtered
+//	new_coordlist.append(coord)
+//	random.shuffle(new_coordlist) # randomize coord list; why not?
+//	new_coordlist.sort(key=lambda i: i[4], reverse=True) # put the best scores first
+//	return new_coordlist
+	
+	func sortCoordlist(coordlist: Array<Array<Int>>, word: String) -> Array<Array<Int>> {
 		
+		for coord in coordlist {
+			let col = coord[0]
+			let row = coord[1]
+			let vertical = coord[2]
+		}
+		
+		return Array<Array<Int>>()
 	}
 	
 	func fitAndAdd(word: String) {
