@@ -29,6 +29,10 @@ class CrosswordsGenerator {
 	
 	func generate() {
 		
+		var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+		array.shuffleInPlace()
+		print(array)
+		
 		//print(availableWords)
 		
 		availableWords.sortInPlace({$0.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > $1.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)})
@@ -93,13 +97,21 @@ class CrosswordsGenerator {
 	
 	func sortCoordlist(coordlist: Array<Array<Int>>, word: String) -> Array<Array<Int>> {
 		
-		for coord in coordlist {
+		var nCoordlist = Array<Array<Int>>()
+		
+		for var coord in coordlist {
 			let col = coord[0]
 			let row = coord[1]
 			let vertical = coord[2]
+			coord[4] = checkFitScore(col, row: row, vertical: vertical, word: word)
+			if coord[4] > 0 {
+				nCoordlist.append(coord)
+			}
 		}
 		
-		return Array<Array<Int>>()
+		
+		
+		return nCoordlist
 	}
 	
 	func fitAndAdd(word: String) {
@@ -107,8 +119,8 @@ class CrosswordsGenerator {
 		var count = 0
 	}
 	
-	func checkFitScore(col: Int, row: Int, vertical: Int, word: String) {
-		
+	func checkFitScore(col: Int, row: Int, vertical: Int, word: String) -> Int {
+		return 0
 	}
 	
 	func setWord(col: Int, row: Int, vertical: Int, word: String, force: Bool = false) {
