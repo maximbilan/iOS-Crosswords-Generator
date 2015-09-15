@@ -13,6 +13,9 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		
+		let crosswordsGenerator = CrosswordsGenerator(columns: 10, rows: 10, words: ["Fuck", "Bullshit", "Amazing", "Brutto"])
+		crosswordsGenerator.generate()
 	}
 
 	override func didReceiveMemoryWarning() {

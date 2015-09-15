@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D282DC81BA8476700930D19 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D282DC71BA8476700930D19 /* Array2D.swift */; settings = {ASSET_TAGS = (); }; };
 		6D35C4F51BA3098200B561B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C4F41BA3098200B561B1 /* AppDelegate.swift */; };
 		6D35C4F71BA3098200B561B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C4F61BA3098200B561B1 /* ViewController.swift */; };
 		6D35C4FA1BA3098200B561B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D35C4F81BA3098200B561B1 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D282DC71BA8476700930D19 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
 		6D35C4F11BA3098200B561B1 /* crosswords_generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crosswords_generator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D35C4F41BA3098200B561B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D35C4F61BA3098200B561B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				6D35C4FD1BA3098200B561B1 /* LaunchScreen.storyboard */,
 				6D35C5001BA3098200B561B1 /* Info.plist */,
 				6D35C5061BA30C8C00B561B1 /* CrosswordsGenerator.swift */,
+				6D282DC71BA8476700930D19 /* Array2D.swift */,
 			);
 			path = crosswords_generator;
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D35C4F71BA3098200B561B1 /* ViewController.swift in Sources */,
+				6D282DC81BA8476700930D19 /* Array2D.swift in Sources */,
 				6D35C5071BA30C8C00B561B1 /* CrosswordsGenerator.swift in Sources */,
 				6D35C4F51BA3098200B561B1 /* AppDelegate.swift in Sources */,
 			);
