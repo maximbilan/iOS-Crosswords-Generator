@@ -42,7 +42,7 @@ class CrosswordsGenerator {
 		
 		for word in availableWords {
 			if !currentWordList.contains(word) {
-				
+				fitAndAdd(word)
 			}
 		}
 	}
@@ -103,13 +103,14 @@ class CrosswordsGenerator {
 			let col = coord[0]
 			let row = coord[1]
 			let vertical = coord[2]
-			coord[4] = checkFitScore(col, row: row, vertical: vertical, word: word)
+			coord[4] = checkFitScore(col, r: row, vertical: vertical, word: word)
 			if coord[4] > 0 {
 				nCoordlist.append(coord)
 			}
 		}
 		
-		
+		nCoordlist.shuffleInPlace()
+		nCoordlist.sortInPlace({$0[4] > $1[4]})
 		
 		return nCoordlist
 	}
@@ -119,8 +120,87 @@ class CrosswordsGenerator {
 		var count = 0
 	}
 	
-	func checkFitScore(col: Int, row: Int, vertical: Int, word: String) -> Int {
-		return 0
+	func checkFitScore(c: Int, r: Int, vertical: Int, word: String) -> Int {
+		
+		if c < 1 || r < 1 || c >= self.columns || r >= self.rows {
+			return 0
+		}
+		
+		var col = c
+		var row = r
+		var count = 1
+		var score = 1
+		
+		for letter in word.characters {
+			let activeCell = getCell(col, row: row)
+			if activeCell == "-" || activeCell == String(letter) {
+				
+				if activeCell == String(letter) {
+					score += 1
+				}
+				
+				if vertical == 0 {
+					if activeCell != String(letter) {
+						if !checkIfCellClear(col + 1, row: row) {
+							return 0
+						}
+						
+						if !checkIfCellClear(col - 1, row: row) {
+							return 0
+						}
+					}
+					
+					if count == 1 {
+						if checkIfCellClear(col, row: row - 1) {
+							return 0
+						}
+					}
+					
+					if count == word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) {
+						if !checkIfCellClear(col, row: row + 1) {
+							return 0
+						}
+					}
+				}
+				else {
+					if activeCell != String(letter) {
+						if !checkIfCellClear(col, row: row - 1) {
+							return 0
+						}
+						
+						if !checkIfCellClear(col, row: row + 1) {
+							return 0
+						}
+					}
+					
+					if count == 1 {
+						if checkIfCellClear(col - 1, row: row) {
+							return 0
+						}
+					}
+					
+					if count == word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) {
+						if !checkIfCellClear(col + 1, row: row) {
+							return 0
+						}
+					}
+				}
+				
+				if vertical == 0 {
+					row += 1
+				}
+				else {
+					col += 1
+				}
+
+				count += 1
+			}
+			else {
+				return 0
+			}
+		}
+		
+		return score
 	}
 	
 	func setWord(col: Int, row: Int, vertical: Int, word: String, force: Bool = false) {
@@ -131,12 +211,13 @@ class CrosswordsGenerator {
 		
 	}
  
-	func getCell(col: Int, row: Int) {
-		
+	func getCell(col: Int, row: Int) -> String{
+		return grid![row-1, col-1]
 	}
 	
 	func checkIfCellClear(col: Int, row: Int) -> Bool {
-		return false
+		let cell = getCell(col, row: row)
+		return cell == "-" ? true : false
 	}
 	
 }
