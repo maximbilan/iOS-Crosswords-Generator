@@ -14,6 +14,8 @@ class CrosswordsGenerator {
 	var rows: Int = 0
 	var grid: Array2D<String>?
 	
+	var maxLoops: Int = 0
+	
 	var availableWords: Array<String> = Array()
 	var currentWordList: Array<String> = Array()
 	
@@ -23,15 +25,12 @@ class CrosswordsGenerator {
 	init(columns: Int, rows: Int, maxLoops: Int = 2000, words: Array<String>) {
 		self.columns = columns
 		self.rows = rows
+		self.maxLoops = maxLoops
 		self.availableWords = words
 		self.grid = Array2D(columns: columns, rows: rows, defaultValue: "-")
 	}
 	
 	func generate() {
-		
-		var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-		array.shuffleInPlace()
-		print(array)
 		
 		//print(availableWords)
 		
@@ -85,16 +84,6 @@ class CrosswordsGenerator {
 		return nCoordlist
 	}
 	
-//	new_coordlist = []
-//	for coord in coordlist:
-//	col, row, vertical = coord[0], coord[1], coord[2]
-//	coord[4] = self.check_fit_score(col, row, vertical, word) # checking scores
-//	if coord[4]: # 0 scores are filtered
-//	new_coordlist.append(coord)
-//	random.shuffle(new_coordlist) # randomize coord list; why not?
-//	new_coordlist.sort(key=lambda i: i[4], reverse=True) # put the best scores first
-//	return new_coordlist
-	
 	func sortCoordlist(coordlist: Array<Array<Int>>, word: String) -> Array<Array<Int>> {
 		
 		var nCoordlist = Array<Array<Int>>()
@@ -118,6 +107,20 @@ class CrosswordsGenerator {
 	func fitAndAdd(word: String) {
 		var fit = false
 		var count = 0
+		var coordlist = suggestCoord(word)
+		
+		while !fit && count < maxLoops {
+			
+			if currentWordList.count == 0 {
+				let vertical = 0
+				let col = 1
+				let row = 1
+			}
+			else {
+			}
+			
+			count += 1
+		}
 	}
 	
 	func checkFitScore(c: Int, r: Int, vertical: Int, word: String) -> Int {
