@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
-		let crosswordsGenerator = CrosswordsGenerator(columns: 10, rows: 10, words: ["fuck", "bullshit", "amazing", "brutto"])
+		let crosswordsGenerator = CrosswordsGenerator(columns: 10, rows: 10, words: ["tfuck", "bullshit", "amazing", "brutto"])
 		crosswordsGenerator.generate()
 	}
 

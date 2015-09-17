@@ -141,7 +141,7 @@ class CrosswordsGenerator {
 		while !fit && count < maxLoops {
 			
 			if currentWordList.count == 0 {
-				let vertical = 0//randomInt(0, max: 1)
+				let vertical = randomInt(0, max: 1)
 				var col = 1
 				var row = 1
 
