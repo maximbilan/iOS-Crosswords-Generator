@@ -39,21 +39,10 @@ class CrosswordsGenerator {
 	
 	func generate() {
 		
-		//print(availableWords)
-		
 		availableWords.sortInPlace({$0.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > $1.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)})
 		
-		print("!!!")
+		print("---")
 		print(availableWords)
-		
-		print("!!!")
-		for (var i = 0; i < rows; ++i) {
-			var s = ""
-			for (var j = 0; j < columns; ++j) {
-				s += grid![i, j]
-			}
-			print(s)
-		}
 		
 		for word in availableWords {
 			if !currentWordList.contains(word) {
@@ -61,14 +50,8 @@ class CrosswordsGenerator {
 			}
 		}
 		
-		print("!!!")
-		for (var i = 0; i < rows; ++i) {
-			var s = ""
-			for (var j = 0; j < columns; ++j) {
-				s += grid![i, j]
-			}
-			print(s)
-		}
+		print("---")
+		printGrid()
 	}
 	
 	func suggestCoord(word: String) -> Array<Array<Int>> {
@@ -286,14 +269,22 @@ class CrosswordsGenerator {
 	func checkIfCellClear(col: Int, row: Int) -> Bool {
 		if col > 0 && row > 0 && col < columns && row < rows {
 			let cell = getCell(col, row: row)
-			print(cell)
-			let bool1 = cell == "-" ? true : false
-			
-			print(bool1)
 			return cell == "-" ? true : false
 		}
 		else {
 			return true
+		}
+	}
+	
+	// MARK: - Debug
+	
+	func printGrid() {
+		for (var i = 0; i < rows; ++i) {
+			var s = ""
+			for (var j = 0; j < columns; ++j) {
+				s += grid![i, j]
+			}
+			print(s)
 		}
 	}
 	
