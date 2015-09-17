@@ -114,8 +114,8 @@ class CrosswordsGenerator {
 		var nCoordlist = Array<Array<Int>>()
 		
 		for var coord in coordlist {
-			var col = coord[0]
-			var row = coord[1]
+			let col = coord[0]
+			let row = coord[1]
 			let vertical = coord[2]
 			coord[4] = checkFitScore(col, r: row, vertical: vertical, word: word)
 			if coord[4] > 0 {
@@ -142,8 +142,8 @@ class CrosswordsGenerator {
 			
 			if currentWordList.count == 0 {
 				let vertical = randomInt(0, max: 1)
-				var col = 1
-				var row = 1
+				let col = 1
+				let row = 1
 
 				if checkFitScore(col, r: row, vertical: vertical, word: word) > 0 {
 					fit = true
@@ -153,8 +153,8 @@ class CrosswordsGenerator {
 			}
 			else {
 				if count >= 0 && count < coordlist.count {
-					var col = coordlist[count][0]
-					var row = coordlist[count][1]
+					let col = coordlist[count][0]
+					let row = coordlist[count][1]
 					let vertical = coordlist[count][2]
 
 					if coordlist[count][4] > 0 {
