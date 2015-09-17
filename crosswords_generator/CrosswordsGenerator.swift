@@ -19,6 +19,13 @@ class CrosswordsGenerator {
 	var availableWords: Array<String> = Array()
 	var currentWordList: Array<String> = Array()
 	
+	struct Word {
+		var word = ""
+		var col = 0
+		var row = 0
+		var vertical = 0
+	}
+	
 	init() {
 	}
 	
@@ -104,6 +111,10 @@ class CrosswordsGenerator {
 		return nCoordlist
 	}
 	
+	func randomInt(min: Int, max:Int) -> Int {
+		return min + Int(arc4random_uniform(UInt32(max - min + 1)))
+	}
+	
 	func fitAndAdd(word: String) {
 		var fit = false
 		var count = 0
@@ -112,11 +123,30 @@ class CrosswordsGenerator {
 		while !fit && count < maxLoops {
 			
 			if currentWordList.count == 0 {
-				let vertical = 0
+				let vertical = randomInt(0, max: 1)
 				let col = 1
 				let row = 1
+
+				if checkFitScore(col, r: row, vertical: vertical, word: word) > 0 {
+					fit = true
+					setWord(col, row: row, vertical: vertical, word: word, force: true)
+				}
+				
 			}
 			else {
+				if count > 0 && count < coordlist.count {
+					let col = coordlist[count][0]
+					let row = coordlist[count][1]
+					let vertical = coordlist[count][2]
+
+					if coordlist[count][4] > 0 {
+						fit = true
+						setWord(col, row: row, vertical: vertical, word: word, force: true)
+					}
+				}
+				else {
+					return
+				}
 			}
 			
 			count += 1
@@ -207,11 +237,26 @@ class CrosswordsGenerator {
 	}
 	
 	func setWord(col: Int, row: Int, vertical: Int, word: String, force: Bool = false) {
-		
+		if force {
+			//let word = Word(word: word, col: col, row: row, vertical: vertical)
+			currentWordList.append(word)
+			var r = row
+			var c = col
+			
+			for letter in word.characters {
+				setCell(c, row: r, value: String(letter))
+				if vertical == 0 {
+					r += 1
+				}
+				else {
+					c += 1
+				}
+			}
+		}
 	}
 	
 	func setCell(col: Int, row: Int, value: String) {
-		
+		grid![row - 1, col - 1] = value
 	}
  
 	func getCell(col: Int, row: Int) -> String{
