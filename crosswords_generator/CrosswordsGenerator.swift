@@ -117,7 +117,7 @@ class CrosswordsGenerator {
 			var col = coord[0]
 			var row = coord[1]
 			let vertical = coord[2]
-			coord[4] = checkFitScore(&col, row: &row, vertical: vertical, word: word)
+			coord[4] = checkFitScore(col, r: row, vertical: vertical, word: word)
 			if coord[4] > 0 {
 				nCoordlist.append(coord)
 			}
@@ -141,25 +141,25 @@ class CrosswordsGenerator {
 		while !fit && count < maxLoops {
 			
 			if currentWordList.count == 0 {
-				let vertical = randomInt(0, max: 1)
+				let vertical = 0//randomInt(0, max: 1)
 				var col = 1
 				var row = 1
 
-				if checkFitScore(&col, row: &row, vertical: vertical, word: word) > 0 {
+				if checkFitScore(col, r: row, vertical: vertical, word: word) > 0 {
 					fit = true
-					setWord(&col, row: &row, vertical: vertical, word: word, force: true)
+					setWord(col, r: row, vertical: vertical, word: word, force: true)
 				}
 				
 			}
 			else {
-				if count > 0 && count < coordlist.count {
+				if count >= 0 && count < coordlist.count {
 					var col = coordlist[count][0]
 					var row = coordlist[count][1]
 					let vertical = coordlist[count][2]
 
 					if coordlist[count][4] > 0 {
 						fit = true
-						setWord(&col, row: &row, vertical: vertical, word: word, force: true)
+						setWord(col, r: row, vertical: vertical, word: word, force: true)
 					}
 				}
 				else {
@@ -171,7 +171,10 @@ class CrosswordsGenerator {
 		}
 	}
 	
-	func checkFitScore(inout col: Int, inout row: Int, vertical: Int, word: String) -> Int {
+	func checkFitScore(c: Int, r: Int, vertical: Int, word: String) -> Int {
+		
+		var col = c
+		var row = r
 		
 		if col < 1 || row < 1 || col >= self.columns || row >= self.rows {
 			return 0
@@ -187,7 +190,7 @@ class CrosswordsGenerator {
 					score += 1
 				}
 				
-				if vertical == 0 {
+				if vertical != 0 {
 					if activeCell != String(letter) {
 						if !checkIfCellClear(col + 1, row: row) {
 							return 0
@@ -199,7 +202,7 @@ class CrosswordsGenerator {
 					}
 					
 					if count == 1 {
-						if checkIfCellClear(col, row: row - 1) {
+						if !checkIfCellClear(col, row: row - 1) {
 							return 0
 						}
 					}
@@ -222,7 +225,7 @@ class CrosswordsGenerator {
 					}
 					
 					if count == 1 {
-						if checkIfCellClear(col - 1, row: row) {
+						if !checkIfCellClear(col - 1, row: row) {
 							return 0
 						}
 					}
@@ -234,7 +237,7 @@ class CrosswordsGenerator {
 					}
 				}
 				
-				if vertical == 0 {
+				if vertical != 0 {
 					row += 1
 				}
 				else {
@@ -251,14 +254,18 @@ class CrosswordsGenerator {
 		return score
 	}
 	
-	func setWord(inout col: Int, inout row: Int, vertical: Int, word: String, force: Bool = false) {
+	func setWord(c: Int, r: Int, vertical: Int, word: String, force: Bool = false) {
+		
+		var col = c
+		var row = r
+		
 		if force {
 			//let word = Word(word: word, col: col, row: row, vertical: vertical)
 			currentWordList.append(word)
 			
 			for letter in word.characters {
 				setCell(col, row: row, value: String(letter))
-				if vertical == 0 {
+				if vertical != 0 {
 					row += 1
 				}
 				else {
@@ -269,20 +276,24 @@ class CrosswordsGenerator {
 	}
 	
 	func setCell(col: Int, row: Int, value: String) {
-		grid![row, col] = value
+		grid![row - 1, col - 1] = value
 	}
  
 	func getCell(col: Int, row: Int) -> String{
-		return grid![row, col]
+		return grid![row - 1, col - 1]
 	}
 	
 	func checkIfCellClear(col: Int, row: Int) -> Bool {
-		if col >= 0 && row >= 0 && col < columns && row < rows {
+		if col > 0 && row > 0 && col < columns && row < rows {
 			let cell = getCell(col, row: row)
+			print(cell)
+			let bool1 = cell == "-" ? true : false
+			
+			print(bool1)
 			return cell == "-" ? true : false
 		}
 		else {
-			return false
+			return true
 		}
 	}
 	
