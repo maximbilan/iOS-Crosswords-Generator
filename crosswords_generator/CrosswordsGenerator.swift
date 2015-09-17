@@ -43,13 +43,31 @@ class CrosswordsGenerator {
 		
 		availableWords.sortInPlace({$0.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > $1.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)})
 		
-		//print("---")
-		//print(availableWords)
+		print("!!!")
+		print(availableWords)
+		
+		print("!!!")
+		for (var i = 0; i < rows; ++i) {
+			var s = ""
+			for (var j = 0; j < columns; ++j) {
+				s += grid![i, j]
+			}
+			print(s)
+		}
 		
 		for word in availableWords {
 			if !currentWordList.contains(word) {
 				fitAndAdd(word)
 			}
+		}
+		
+		print("!!!")
+		for (var i = 0; i < rows; ++i) {
+			var s = ""
+			for (var j = 0; j < columns; ++j) {
+				s += grid![i, j]
+			}
+			print(s)
 		}
 	}
 	
@@ -96,10 +114,10 @@ class CrosswordsGenerator {
 		var nCoordlist = Array<Array<Int>>()
 		
 		for var coord in coordlist {
-			let col = coord[0]
-			let row = coord[1]
+			var col = coord[0]
+			var row = coord[1]
 			let vertical = coord[2]
-			coord[4] = checkFitScore(col, r: row, vertical: vertical, word: word)
+			coord[4] = checkFitScore(&col, row: &row, vertical: vertical, word: word)
 			if coord[4] > 0 {
 				nCoordlist.append(coord)
 			}
@@ -124,24 +142,24 @@ class CrosswordsGenerator {
 			
 			if currentWordList.count == 0 {
 				let vertical = randomInt(0, max: 1)
-				let col = 1
-				let row = 1
+				var col = 1
+				var row = 1
 
-				if checkFitScore(col, r: row, vertical: vertical, word: word) > 0 {
+				if checkFitScore(&col, row: &row, vertical: vertical, word: word) > 0 {
 					fit = true
-					setWord(col, row: row, vertical: vertical, word: word, force: true)
+					setWord(&col, row: &row, vertical: vertical, word: word, force: true)
 				}
 				
 			}
 			else {
 				if count > 0 && count < coordlist.count {
-					let col = coordlist[count][0]
-					let row = coordlist[count][1]
+					var col = coordlist[count][0]
+					var row = coordlist[count][1]
 					let vertical = coordlist[count][2]
 
 					if coordlist[count][4] > 0 {
 						fit = true
-						setWord(col, row: row, vertical: vertical, word: word, force: true)
+						setWord(&col, row: &row, vertical: vertical, word: word, force: true)
 					}
 				}
 				else {
@@ -153,14 +171,11 @@ class CrosswordsGenerator {
 		}
 	}
 	
-	func checkFitScore(c: Int, r: Int, vertical: Int, word: String) -> Int {
+	func checkFitScore(inout col: Int, inout row: Int, vertical: Int, word: String) -> Int {
 		
-		if c < 1 || r < 1 || c >= self.columns || r >= self.rows {
+		if col < 1 || row < 1 || col >= self.columns || row >= self.rows {
 			return 0
 		}
-		
-		var col = c
-		var row = r
 		var count = 1
 		var score = 1
 		
@@ -236,36 +251,39 @@ class CrosswordsGenerator {
 		return score
 	}
 	
-	func setWord(col: Int, row: Int, vertical: Int, word: String, force: Bool = false) {
+	func setWord(inout col: Int, inout row: Int, vertical: Int, word: String, force: Bool = false) {
 		if force {
 			//let word = Word(word: word, col: col, row: row, vertical: vertical)
 			currentWordList.append(word)
-			var r = row
-			var c = col
 			
 			for letter in word.characters {
-				setCell(c, row: r, value: String(letter))
+				setCell(col, row: row, value: String(letter))
 				if vertical == 0 {
-					r += 1
+					row += 1
 				}
 				else {
-					c += 1
+					col += 1
 				}
 			}
 		}
 	}
 	
 	func setCell(col: Int, row: Int, value: String) {
-		grid![row - 1, col - 1] = value
+		grid![row, col] = value
 	}
  
 	func getCell(col: Int, row: Int) -> String{
-		return grid![row-1, col-1]
+		return grid![row, col]
 	}
 	
 	func checkIfCellClear(col: Int, row: Int) -> Bool {
-		let cell = getCell(col, row: row)
-		return cell == "-" ? true : false
+		if col >= 0 && row >= 0 && col < columns && row < rows {
+			let cell = getCell(col, row: row)
+			return cell == "-" ? true : false
+		}
+		else {
+			return false
+		}
 	}
 	
 }
