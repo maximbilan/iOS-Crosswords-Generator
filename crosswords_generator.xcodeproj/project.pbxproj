@@ -60,17 +60,41 @@
 		6D35C4F31BA3098200B561B1 /* crosswords_generator */ = {
 			isa = PBXGroup;
 			children = (
+				6DFC96C01BAAFC960000B22F /* Sources */,
+				6DFC96C21BAAFCBB0000B22F /* Resources */,
+			);
+			path = crosswords_generator;
+			sourceTree = "<group>";
+		};
+		6DFC96C01BAAFC960000B22F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				6DFC96C11BAAFCA90000B22F /* Extensions */,
 				6D35C4F41BA3098200B561B1 /* AppDelegate.swift */,
 				6D35C4F61BA3098200B561B1 /* ViewController.swift */,
+				6D35C5061BA30C8C00B561B1 /* CrosswordsGenerator.swift */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		6DFC96C11BAAFCA90000B22F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6D282DC71BA8476700930D19 /* Array2D.swift */,
+				6D282DC91BA8728900930D19 /* ArrayShuffle.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		6DFC96C21BAAFCBB0000B22F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				6D35C4F81BA3098200B561B1 /* Main.storyboard */,
 				6D35C4FB1BA3098200B561B1 /* Assets.xcassets */,
 				6D35C4FD1BA3098200B561B1 /* LaunchScreen.storyboard */,
 				6D35C5001BA3098200B561B1 /* Info.plist */,
-				6D35C5061BA30C8C00B561B1 /* CrosswordsGenerator.swift */,
-				6D282DC71BA8476700930D19 /* Array2D.swift */,
-				6D282DC91BA8728900930D19 /* ArrayShuffle.swift */,
 			);
-			path = crosswords_generator;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
