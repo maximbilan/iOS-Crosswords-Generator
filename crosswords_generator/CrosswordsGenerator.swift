@@ -17,6 +17,11 @@ public class CrosswordsGenerator {
 	private var words: Array<String> = Array()
 	private var currentWords: Array<String> = Array()
 	private var resultData: Array<Word> = Array()
+	public var result: Array<Word> {
+		get {
+			return resultData
+		}
+	}
 	
 	private let emptySymbol = "-"
 	private let debug = true
@@ -64,10 +69,6 @@ public class CrosswordsGenerator {
 			print("--- Result ---")
 			printGrid()
 		}
-	}
-	
-	public func getResult() -> Array<Word> {
-		return resultData
 	}
 	
 	private func suggestCoord(word: String) -> Array<(Int, Int, WordDirection, Int, Int)> {
