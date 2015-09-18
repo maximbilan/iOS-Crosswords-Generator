@@ -8,28 +8,23 @@
 
 import Foundation
 
-class CrosswordsGenerator {
+public class CrosswordsGenerator {
 
-	var columns: Int = 0
-	var rows: Int = 0
-	var grid: Array2D<String>?
+	private var columns: Int = 0
+	private var rows: Int = 0
+	private var grid: Array2D<String>?
+	private var maxLoops: Int = 0
+	private var availableWords: Array<String> = Array()
+	private var currentWordList: Array<String> = Array()
 	
-	var maxLoops: Int = 0
-	
-	var availableWords: Array<String> = Array()
-	var currentWordList: Array<String> = Array()
-	
-	struct Word {
+	public struct Word {
 		var word = ""
 		var col = 0
 		var row = 0
 		var vertical = 0
 	}
 	
-	init() {
-	}
-	
-	init(columns: Int, rows: Int, maxLoops: Int = 2000, words: Array<String>) {
+	public init(columns: Int, rows: Int, maxLoops: Int = 2000, words: Array<String>) {
 		self.columns = columns
 		self.rows = rows
 		self.maxLoops = maxLoops
@@ -37,7 +32,7 @@ class CrosswordsGenerator {
 		self.grid = Array2D(columns: columns, rows: rows, defaultValue: "-")
 	}
 	
-	func generate() {
+	public func generate() {
 		
 		availableWords.sortInPlace({$0.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > $1.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)})
 		
@@ -54,9 +49,9 @@ class CrosswordsGenerator {
 		printGrid()
 	}
 	
-	func suggestCoord(word: String) -> Array<Array<Int>> {
+	private func suggestCoord(word: String) -> Array<(Int, Int, Int, Int, Int)> {
 		
-		var coordlist = Array<Array<Int>>()
+		var coordlist = Array<(Int, Int, Int, Int, Int)>()
 		var glc = -1
 		
 		for letter in word.characters {
@@ -72,13 +67,13 @@ class CrosswordsGenerator {
 					if String(letter) == cell {
 						if rowc - glc > 0 {
 							if ((rowc - glc) + word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)) <= self.rows {
-								coordlist.append([colc, rowc - glc, 1, colc + (rowc - glc), 0])
+								coordlist.append((colc, rowc - glc, 1, colc + (rowc - glc), 0))
 							}
 						}
 						
 						if colc - glc > 0 {
 							if ((colc - glc) + word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)) <= self.columns {
-								coordlist.append([colc - glc, rowc, 0, rowc + (colc - glc), 0])
+								coordlist.append((colc - glc, rowc, 0, rowc + (colc - glc), 0))
 							}
 						}
 					}
@@ -92,31 +87,31 @@ class CrosswordsGenerator {
 		return nCoordlist
 	}
 	
-	func sortCoordlist(coordlist: Array<Array<Int>>, word: String) -> Array<Array<Int>> {
+	private func sortCoordlist(coordlist: Array<(Int, Int, Int, Int, Int)>, word: String) -> Array<(Int, Int, Int, Int, Int)> {
 		
-		var nCoordlist = Array<Array<Int>>()
+		var nCoordlist = Array<(Int, Int, Int, Int, Int)>()
 		
 		for var coord in coordlist {
-			let col = coord[0]
-			let row = coord[1]
-			let vertical = coord[2]
-			coord[4] = checkFitScore(col, r: row, vertical: vertical, word: word)
-			if coord[4] > 0 {
+			let col = coord.0
+			let row = coord.1
+			let vertical = coord.2
+			coord.4 = checkFitScore(col, r: row, vertical: vertical, word: word)
+			if coord.4 > 0 {
 				nCoordlist.append(coord)
 			}
 		}
 		
 		nCoordlist.shuffleInPlace()
-		nCoordlist.sortInPlace({$0[4] > $1[4]})
+		nCoordlist.sortInPlace({$0.4 > $1.4})
 		
 		return nCoordlist
 	}
 	
-	func randomInt(min: Int, max:Int) -> Int {
+	private func randomInt(min: Int, max:Int) -> Int {
 		return min + Int(arc4random_uniform(UInt32(max - min + 1)))
 	}
 	
-	func fitAndAdd(word: String) {
+	private func fitAndAdd(word: String) {
 		var fit = false
 		var count = 0
 		var coordlist = suggestCoord(word)
@@ -136,11 +131,11 @@ class CrosswordsGenerator {
 			}
 			else {
 				if count >= 0 && count < coordlist.count {
-					let col = coordlist[count][0]
-					let row = coordlist[count][1]
-					let vertical = coordlist[count][2]
+					let col = coordlist[count].0
+					let row = coordlist[count].1
+					let vertical = coordlist[count].2
 
-					if coordlist[count][4] > 0 {
+					if coordlist[count].4 > 0 {
 						fit = true
 						setWord(col, r: row, vertical: vertical, word: word, force: true)
 					}
@@ -154,7 +149,7 @@ class CrosswordsGenerator {
 		}
 	}
 	
-	func checkFitScore(c: Int, r: Int, vertical: Int, word: String) -> Int {
+	private func checkFitScore(c: Int, r: Int, vertical: Int, word: String) -> Int {
 		
 		var col = c
 		var row = r
@@ -237,7 +232,7 @@ class CrosswordsGenerator {
 		return score
 	}
 	
-	func setWord(c: Int, r: Int, vertical: Int, word: String, force: Bool = false) {
+	private func setWord(c: Int, r: Int, vertical: Int, word: String, force: Bool = false) {
 		
 		var col = c
 		var row = r
