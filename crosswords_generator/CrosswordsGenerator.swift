@@ -113,8 +113,8 @@ public class CrosswordsGenerator {
 		for var coord in coordlist {
 			let column = coord.0
 			let row = coord.1
-			let vertical = coord.2
-			coord.4 = checkFitScore(column, row: row, direction: vertical, word: word)
+			let direction = coord.2
+			coord.4 = checkFitScore(column, row: row, direction: direction, word: word)
 			if coord.4 > 0 {
 				newCoordlist.append(coord)
 			}
