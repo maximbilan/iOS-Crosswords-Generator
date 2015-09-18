@@ -16,6 +16,7 @@ public class CrosswordsGenerator {
 	private var grid: Array2D<String>?
 	private var words: Array<String> = Array()
 	private var currentWords: Array<String> = Array()
+	private var resultData: Array<Word> = Array()
 	
 	private let emptySymbol = "-"
 	private let debug = true
@@ -24,7 +25,7 @@ public class CrosswordsGenerator {
 		var word = ""
 		var column = 0
 		var row = 0
-		var vertical = 0
+		var direction: WordDirection = .Vertical
 	}
 	
 	public enum WordDirection {
@@ -65,9 +66,13 @@ public class CrosswordsGenerator {
 		}
 	}
 	
-	private func suggestCoord(word: String) -> Array<(Int, Int, Int, Int, Int)> {
+	public func getResult() -> Array<Word> {
+		return resultData
+	}
+	
+	private func suggestCoord(word: String) -> Array<(Int, Int, WordDirection, Int, Int)> {
 		
-		var coordlist = Array<(Int, Int, Int, Int, Int)>()
+		var coordlist = Array<(Int, Int, WordDirection, Int, Int)>()
 		var glc = -1
 		
 		for letter in word.characters {
@@ -83,13 +88,13 @@ public class CrosswordsGenerator {
 					if String(letter) == cell {
 						if rowc - glc > 0 {
 							if ((rowc - glc) + word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)) <= rows {
-								coordlist.append((colc, rowc - glc, 1, colc + (rowc - glc), 0))
+								coordlist.append((colc, rowc - glc, .Horizontal, colc + (rowc - glc), 0))
 							}
 						}
 						
 						if colc - glc > 0 {
 							if ((colc - glc) + word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)) <= columns {
-								coordlist.append((colc - glc, rowc, 0, rowc + (colc - glc), 0))
+								coordlist.append((colc - glc, rowc, .Vertical, rowc + (colc - glc), 0))
 							}
 						}
 					}
@@ -101,15 +106,15 @@ public class CrosswordsGenerator {
 		return newCoordlist
 	}
 	
-	private func sortCoordlist(coordlist: Array<(Int, Int, Int, Int, Int)>, word: String) -> Array<(Int, Int, Int, Int, Int)> {
+	private func sortCoordlist(coordlist: Array<(Int, Int, WordDirection, Int, Int)>, word: String) -> Array<(Int, Int, WordDirection, Int, Int)> {
 		
-		var newCoordlist = Array<(Int, Int, Int, Int, Int)>()
+		var newCoordlist = Array<(Int, Int, WordDirection, Int, Int)>()
 		
 		for var coord in coordlist {
 			let column = coord.0
 			let row = coord.1
 			let vertical = coord.2
-			coord.4 = checkFitScore(column, row: row, vertical: vertical, word: word)
+			coord.4 = checkFitScore(column, row: row, direction: vertical, word: word)
 			if coord.4 > 0 {
 				newCoordlist.append(coord)
 			}
@@ -130,24 +135,25 @@ public class CrosswordsGenerator {
 		while !fit && count < maxLoops {
 			
 			if currentWords.count == 0 {
-				let vertical = randomInt(0, max: 1)
+				let randomValue = randomInt(0, max: 1)
+				let direction = (randomValue == 0 ? .Vertical : .Horizontal) as WordDirection
 				let column = 1
 				let row = 1
 
-				if checkFitScore(column, row: row, vertical: vertical, word: word) > 0 {
+				if checkFitScore(column, row: row, direction: direction, word: word) > 0 {
 					fit = true
-					setWord(column, row: row, vertical: vertical, word: word, force: true)
+					setWord(column, row: row, direction: direction, word: word, force: true)
 				}
 			}
 			else {
 				if count >= 0 && count < coordlist.count {
 					let column = coordlist[count].0
 					let row = coordlist[count].1
-					let vertical = coordlist[count].2
+					let direction = coordlist[count].2
 
 					if coordlist[count].4 > 0 {
 						fit = true
-						setWord(column, row: row, vertical: vertical, word: word, force: true)
+						setWord(column, row: row, direction: direction, word: word, force: true)
 					}
 				}
 				else {
@@ -159,7 +165,7 @@ public class CrosswordsGenerator {
 		}
 	}
 	
-	private func checkFitScore(column: Int, row: Int, vertical: Int, word: String) -> Int {
+	private func checkFitScore(column: Int, row: Int, direction: WordDirection, word: String) -> Int {
 		
 		var c = column
 		var r = row
@@ -179,7 +185,7 @@ public class CrosswordsGenerator {
 					score += 1
 				}
 				
-				if vertical != 0 {
+				if direction == .Horizontal {
 					if activeCell != String(letter) {
 						if !checkIfCellClear(c + 1, row: r) {
 							return 0
@@ -226,7 +232,7 @@ public class CrosswordsGenerator {
 					}
 				}
 				
-				if vertical != 0 {
+				if direction == .Horizontal {
 					r += 1
 				}
 				else {
@@ -260,18 +266,20 @@ public class CrosswordsGenerator {
 		}
 	}
 	
-	private func setWord(column: Int, row: Int, vertical: Int, word: String, force: Bool = false) {
-		
-		var c = column
-		var r = row
+	private func setWord(column: Int, row: Int, direction: WordDirection, word: String, force: Bool = false) {
 		
 		if force {
-			//let word = Word(word: word, col: col, row: row, vertical: vertical)
+			let w = Word(word: word, column: column, row: row, direction: direction)
+			resultData.append(w)
+			
 			currentWords.append(word)
+			
+			var c = column
+			var r = row
 			
 			for letter in word.characters {
 				setCell(c, row: r, value: String(letter))
-				if vertical != 0 {
+				if direction == .Horizontal {
 					r += 1
 				}
 				else {

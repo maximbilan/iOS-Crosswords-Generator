@@ -16,6 +16,8 @@ class ViewController: UIViewController {
 		
 		let crosswordsGenerator = CrosswordsGenerator(columns: 13, rows: 13, words: ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"])
 		crosswordsGenerator.generate()
+		
+		_ = crosswordsGenerator.getResult()
 	}
 
 	override func didReceiveMemoryWarning() {
