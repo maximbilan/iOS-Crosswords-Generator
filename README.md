@@ -24,3 +24,25 @@ public struct Word {
 	var direction: WordDirection = .Vertical
 }
 </pre>
+
+Sample of working:
+
+<pre>
+--- Words ---
+["pumpernickel", "syncopation", "albatross", "saffron", "paladin", "caramel", "snicker", "leaven", "piston", "plague", "coral", "pitch", "fjord", "coda", "harp", "dawn", "lime", "mist", "yarn", "lip"]
+
+--- Result ---
+pumpernickel-
+---a-------e-
+---l-------a-
+caramel-f--v-
+o--d----j--e-
+r--i----o--n-
+a-snicker----
+l----o--dawn-
+-----d-------
+----harp-----
+-------------
+-------------
+-------------
+<pre>
