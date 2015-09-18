@@ -1,6 +1,6 @@
 # Crosswords Generator
 
-Simple algorithm for generating crosswords written on Swift. Based on <a href="http://bryanhelmig.com/python-crossword-puzzle-generator/"> Python Crossword Puzzle Generator.</a>
+Simple algorithm for generating crosswords written on <i>Swift</i>. Based on <a href="http://bryanhelmig.com/python-crossword-puzzle-generator/"> Python Crossword Puzzle Generator.</a>
 
 Using:
 
