@@ -29,7 +29,9 @@ Sample of working:
 
 <pre>
 --- Words ---
-["pumpernickel", "syncopation", "albatross", "saffron", "paladin", "caramel", "snicker", "leaven", "piston", "plague", "coral", "pitch", "fjord", "coda", "harp", "dawn", "lime", "mist", "yarn", "lip"]
+["pumpernickel", "syncopation", "albatross", "saffron", "paladin",
+"caramel", "snicker", "leaven", "piston", "plague", "coral", "pitch",
+"fjord", "coda", "harp", "dawn", "lime", "mist", "yarn", "lip"]
 
 --- Result ---
 pumpernickel-
@@ -45,4 +47,4 @@ l----o--dawn-
 -------------
 -------------
 -------------
-<pre>
+</pre>
