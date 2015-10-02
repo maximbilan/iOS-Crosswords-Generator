@@ -10,21 +10,7 @@ import Foundation
 
 public class CrosswordsGenerator {
 
-	private var columns: Int = 0
-	private var rows: Int = 0
-	private var maxLoops: Int = 0
-	private var grid: Array2D<String>?
-	private var words: Array<String> = Array()
-	private var currentWords: Array<String> = Array()
-	private var resultData: Array<Word> = Array()
-	public var result: Array<Word> {
-		get {
-			return resultData
-		}
-	}
-	
-	private let emptySymbol = "-"
-	private let debug = true
+	// MARK: - Additional types
 	
 	public struct Word {
 		var word = ""
@@ -37,6 +23,30 @@ public class CrosswordsGenerator {
 		case Vertical
 		case Horizontal
 	}
+	
+	// MARK: - Public properties
+	
+	public var columns: Int = 0
+	public var rows: Int = 0
+	public var maxLoops: Int = 0
+	public var words: Array<String> = Array()
+	
+	public var result: Array<Word> {
+		get {
+			return resultData
+		}
+	}
+	
+	// MARK: - Public additional properties
+	
+	public let emptySymbol = "-"
+	public let debug = true
+	
+	// MARK: - Logic properties
+	
+	private var grid: Array2D<String>?
+	private var currentWords: Array<String> = Array()
+	private var resultData: Array<Word> = Array()
 	
 	// MARK: - Initialization
 	
