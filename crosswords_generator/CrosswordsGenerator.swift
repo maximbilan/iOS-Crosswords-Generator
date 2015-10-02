@@ -28,7 +28,7 @@ public class CrosswordsGenerator {
 	
 	public var columns: Int = 0
 	public var rows: Int = 0
-	public var maxLoops: Int = 0
+	public var maxLoops: Int = 2000
 	public var words: Array<String> = Array()
 	
 	public var result: Array<Word> {
@@ -50,17 +50,22 @@ public class CrosswordsGenerator {
 	
 	// MARK: - Initialization
 	
+	public init() {
+	}
+	
 	public init(columns: Int, rows: Int, maxLoops: Int = 2000, words: Array<String>) {
 		self.columns = columns
 		self.rows = rows
 		self.maxLoops = maxLoops
 		self.words = words
-		self.grid = Array2D(columns: columns, rows: rows, defaultValue: emptySymbol)
 	}
 	
 	// MARK: - Crosswords generation
 	
 	public func generate() {
+		
+		self.grid = nil
+		self.grid = Array2D(columns: columns, rows: rows, defaultValue: emptySymbol)
 		
 		words.sortInPlace({$0.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > $1.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)})
 		
