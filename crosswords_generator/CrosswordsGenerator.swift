@@ -67,6 +67,8 @@ public class CrosswordsGenerator {
 		self.grid = nil
 		self.grid = Array2D(columns: columns, rows: rows, defaultValue: emptySymbol)
 		
+		currentWords.removeAll()
+		
 		words.sortInPlace({$0.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > $1.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)})
 		
 		if debug {
