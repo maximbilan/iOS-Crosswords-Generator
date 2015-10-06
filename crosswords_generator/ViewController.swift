@@ -28,12 +28,13 @@ class ViewController: UIViewController {
 		*/
 		let crosswordsGenerator = CrosswordsGenerator()
 		crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
-		crosswordsGenerator.columns = 13
-		crosswordsGenerator.rows = 13
+		crosswordsGenerator.columns = 10
+		crosswordsGenerator.rows = 10
 	
 		var bestResult: Array<CrosswordsGenerator.Word> = Array()
+		let attempts = 10
 		
-		for var i: Int = 0; i < 10; ++i {
+		for var i: Int = 0; i < attempts; ++i {
 			crosswordsGenerator.generate()
 			let result = crosswordsGenerator.result
 			

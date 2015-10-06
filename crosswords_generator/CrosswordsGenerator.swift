@@ -257,6 +257,10 @@ public class CrosswordsGenerator {
 					c += 1
 				}
 
+				if (c >= columns || r >= rows) {
+					return 0
+				}
+				
 				count += 1
 			}
 			else {
