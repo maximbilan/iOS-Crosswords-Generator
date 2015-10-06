@@ -2,7 +2,7 @@
 
 Simple algorithm for generating crosswords written on <i>Swift</i>. Based on <a href="http://bryanhelmig.com/python-crossword-puzzle-generator/"> Python Crossword Puzzle Generator.</a>
 
-Using:
+Simple using:
 
 <pre>
 let generator = CrosswordsGenerator(columns: 10, rows: 10, maxLoops: 2000, words: ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"])
@@ -47,4 +47,53 @@ l----o--dawn-
 -------------
 -------------
 -------------
+</pre>
+
+Generate the best crosswords in 10 attempts:
+
+<pre>
+let crosswordsGenerator = CrosswordsGenerator()
+		crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
+		crosswordsGenerator.columns = 10
+		crosswordsGenerator.rows = 10
+	
+		var bestResult: Array<CrosswordsGenerator.Word> = Array()
+		let attempts = 10
+		
+		for var i: Int = 0; i < attempts; ++i {
+			crosswordsGenerator.generate()
+			let result = crosswordsGenerator.result
+			
+			if result.count > bestResult.count {
+				bestResult.removeAll()
+				for word in result {
+					bestResult.append(word)
+				}
+			}
+		}
+</pre>
+
+Generate the best crosswords in 60 seconds:
+
+<pre>
+let crosswordsGenerator = CrosswordsGenerator()
+		crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
+		crosswordsGenerator.columns = 10
+		crosswordsGenerator.rows = 10
+		
+		var bestResult: Array<CrosswordsGenerator.Word> = Array()
+		let startTime = NSDate()
+		let timeInterval: NSTimeInterval = 10
+		
+		while (fabs(startTime.timeIntervalSinceNow) < timeInterval) {
+			crosswordsGenerator.generate()
+			let result = crosswordsGenerator.result
+			
+			if result.count > bestResult.count {
+				bestResult.removeAll()
+				for word in result {
+					bestResult.append(word)
+				}
+			}
+		}
 </pre>
