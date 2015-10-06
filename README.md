@@ -53,47 +53,47 @@ Generate the best crosswords in 10 attempts:
 
 <pre>
 let crosswordsGenerator = CrosswordsGenerator()
-		crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
-		crosswordsGenerator.columns = 10
-		crosswordsGenerator.rows = 10
+crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
+crosswordsGenerator.columns = 10
+crosswordsGenerator.rows = 10
 	
-		var bestResult: Array<CrosswordsGenerator.Word> = Array()
-		let attempts = 10
+var bestResult: Array<CrosswordsGenerator.Word> = Array()
+let attempts = 10
 		
-		for var i: Int = 0; i < attempts; ++i {
-			crosswordsGenerator.generate()
-			let result = crosswordsGenerator.result
+for var i: Int = 0; i < attempts; ++i {
+	crosswordsGenerator.generate()
+	let result = crosswordsGenerator.result
 			
-			if result.count > bestResult.count {
-				bestResult.removeAll()
-				for word in result {
-					bestResult.append(word)
-				}
-			}
+	if result.count > bestResult.count {
+		bestResult.removeAll()
+		for word in result {
+			bestResult.append(word)
 		}
+	}
+}
 </pre>
 
 Generate the best crosswords in 60 seconds:
 
 <pre>
 let crosswordsGenerator = CrosswordsGenerator()
-		crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
-		crosswordsGenerator.columns = 10
-		crosswordsGenerator.rows = 10
+crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
+crosswordsGenerator.columns = 10
+crosswordsGenerator.rows = 10
 		
-		var bestResult: Array<CrosswordsGenerator.Word> = Array()
-		let startTime = NSDate()
-		let timeInterval: NSTimeInterval = 10
+var bestResult: Array<CrosswordsGenerator.Word> = Array()
+let startTime = NSDate()
+let timeInterval: NSTimeInterval = 10
 		
-		while (fabs(startTime.timeIntervalSinceNow) < timeInterval) {
-			crosswordsGenerator.generate()
-			let result = crosswordsGenerator.result
+while (fabs(startTime.timeIntervalSinceNow) < timeInterval) {
+	crosswordsGenerator.generate()
+	let result = crosswordsGenerator.result
 			
-			if result.count > bestResult.count {
-				bestResult.removeAll()
-				for word in result {
-					bestResult.append(word)
-				}
-			}
+	if result.count > bestResult.count {
+		bestResult.removeAll()
+		for word in result {
+			bestResult.append(word)
 		}
+	}
+}
 </pre>
