@@ -13,19 +13,23 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		/* ----------
+		/* ----------------------------------------------------------------------
 			Generate one crossword
-		   ----------
-		let crosswordsGenerator = CrosswordsGenerator(columns: 13, rows: 13, words: ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"])
+		   ---------------------------------------------------------------------- */
+		
+		/*let crosswordsGenerator = CrosswordsGenerator(columns: 13, rows: 13, words: ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"])
 		crosswordsGenerator.generate()
 		
-		_ = crosswordsGenerator.result
-		*/
+		_ = crosswordsGenerator.result*/
+		
+		/* ---------------------------------------------------------------------- */
 	
-		/* ----------
+		
+		
+		/* ----------------------------------------------------------------------
 			Generate best crossword in 10 attempts
-		   ----------
-		*/
+		   ---------------------------------------------------------------------- */
+		
 		let crosswordsGenerator = CrosswordsGenerator()
 		crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
 		crosswordsGenerator.columns = 10
@@ -45,6 +49,8 @@ class ViewController: UIViewController {
 				}
 			}
 		}
+		
+		/* ---------------------------------------------------------------------- */
 		
 	}
 
