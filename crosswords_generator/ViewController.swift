@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 			Generate best crossword in 10 attempts
 		   ---------------------------------------------------------------------- */
 		
-		let crosswordsGenerator = CrosswordsGenerator()
+		/*let crosswordsGenerator = CrosswordsGenerator()
 		crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
 		crosswordsGenerator.columns = 10
 		crosswordsGenerator.rows = 10
@@ -48,10 +48,38 @@ class ViewController: UIViewController {
 					bestResult.append(word)
 				}
 			}
-		}
+		}*/
 		
 		/* ---------------------------------------------------------------------- */
 		
+		
+		
+		/* ----------------------------------------------------------------------
+			Generate best crossword in 60 seconds
+		   ---------------------------------------------------------------------- */
+		
+		let crosswordsGenerator = CrosswordsGenerator()
+		crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
+		crosswordsGenerator.columns = 10
+		crosswordsGenerator.rows = 10
+		
+		var bestResult: Array<CrosswordsGenerator.Word> = Array()
+		let startTime = NSDate()
+		let timeInterval: NSTimeInterval = 10
+		
+		while (fabs(startTime.timeIntervalSinceNow) < timeInterval) {
+			crosswordsGenerator.generate()
+			let result = crosswordsGenerator.result
+			
+			if result.count > bestResult.count {
+				bestResult.removeAll()
+				for word in result {
+					bestResult.append(word)
+				}
+			}
+		}
+		
+		/* ---------------------------------------------------------------------- */
 	}
 
 }
