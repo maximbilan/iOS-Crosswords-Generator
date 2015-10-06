@@ -70,9 +70,9 @@
 			isa = PBXGroup;
 			children = (
 				6DFC96C11BAAFCA90000B22F /* Extensions */,
+				6D35C5061BA30C8C00B561B1 /* CrosswordsGenerator.swift */,
 				6D35C4F41BA3098200B561B1 /* AppDelegate.swift */,
 				6D35C4F61BA3098200B561B1 /* ViewController.swift */,
-				6D35C5061BA30C8C00B561B1 /* CrosswordsGenerator.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";

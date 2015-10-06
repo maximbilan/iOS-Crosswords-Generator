@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 		
 		
 		/* ----------------------------------------------------------------------
-			Generate best crossword in 10 attempts
+			Generate the best crossword in 10 attempts
 		   ---------------------------------------------------------------------- */
 		
 		/*let crosswordsGenerator = CrosswordsGenerator()
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
 		
 		
 		/* ----------------------------------------------------------------------
-			Generate best crossword in 60 seconds
+			Generate the best crossword in 60 seconds
 		   ---------------------------------------------------------------------- */
 		
 		let crosswordsGenerator = CrosswordsGenerator()
