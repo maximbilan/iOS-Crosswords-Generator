@@ -2,7 +2,7 @@
 
 Simple algorithm for generating crosswords written on <i>Swift</i>. Based on <a href="http://bryanhelmig.com/python-crossword-puzzle-generator/"> Python Crossword Puzzle Generator.</a>
 
-Simple using:
+For simple using:
 
 <pre>
 let generator = CrosswordsGenerator(columns: 10, rows: 10, maxLoops: 2000, words: ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"])
@@ -15,7 +15,7 @@ To get result:
 let result = crosswordsGenerator.result
 </pre>
 
-Array of structures:
+The result is an array of structures:
 <pre>
 public struct Word {
 	var word = ""
@@ -49,7 +49,7 @@ l----o--dawn-
 -------------
 </pre>
 
-Generate the best crosswords in 10 attempts:
+To generate the best crosswords in 10 attempts:
 
 <pre>
 let crosswordsGenerator = CrosswordsGenerator()
@@ -73,7 +73,7 @@ for var i: Int = 0; i < attempts; ++i {
 }
 </pre>
 
-Generate the best crosswords in 60 seconds:
+To generate the best crosswords in 60 seconds:
 
 <pre>
 let crosswordsGenerator = CrosswordsGenerator()
@@ -97,3 +97,5 @@ while (fabs(startTime.timeIntervalSinceNow) < timeInterval) {
 	}
 }
 </pre>
+
+In this repository you can found sample of working the algorithm. Feel free. Happy coding! 
