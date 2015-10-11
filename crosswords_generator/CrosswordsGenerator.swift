@@ -39,8 +39,8 @@ public class CrosswordsGenerator {
 	
 	// MARK: - Public additional properties
 	
-	public let emptySymbol = "-"
-	public let debug = true
+	public var emptySymbol = "-"
+	public var debug = true
 	
 	// MARK: - Logic properties
 	

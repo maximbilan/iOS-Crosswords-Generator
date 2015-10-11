@@ -62,10 +62,12 @@ class ViewController: UIViewController {
 		crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
 		crosswordsGenerator.columns = 10
 		crosswordsGenerator.rows = 10
+		crosswordsGenerator.debug = true
+		crosswordsGenerator.emptySymbol = "*"
 		
 		var bestResult: Array<CrosswordsGenerator.Word> = Array()
 		let startTime = NSDate()
-		let timeInterval: NSTimeInterval = 10
+		let timeInterval: NSTimeInterval = 3
 		
 		while (fabs(startTime.timeIntervalSinceNow) < timeInterval) {
 			crosswordsGenerator.generate()
