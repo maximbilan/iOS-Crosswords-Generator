@@ -82,6 +82,19 @@ class ViewController: UIViewController {
 		}
 		
 		/* ---------------------------------------------------------------------- */
+		
+		/* ----------------------------------------------------------------------
+			Generate one crossword with 'fill all words' mode
+			---------------------------------------------------------------------- */
+		
+		/*let crosswordsGenerator = CrosswordsGenerator(columns: 15, rows: 15, words: ["beijing", "havana", "rome", "paris", "amsterdam"])
+		crosswordsGenerator.fillAllWords = true
+		crosswordsGenerator.generate()
+		
+		let result = crosswordsGenerator.result
+		print(result)*/
+		
+		/* ---------------------------------------------------------------------- */
 	}
 
 }

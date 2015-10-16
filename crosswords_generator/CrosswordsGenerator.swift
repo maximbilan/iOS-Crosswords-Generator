@@ -39,6 +39,7 @@ public class CrosswordsGenerator {
 	
 	// MARK: - Public additional properties
 	
+	public var fillAllWords = false
 	public var emptySymbol = "-"
 	public var debug = true
 	
@@ -86,6 +87,26 @@ public class CrosswordsGenerator {
 		if debug {
 			print("--- Result ---")
 			printGrid()
+		}
+		
+		if fillAllWords {
+			var remainingWords = Array<String>()
+			for word in words {
+				if !currentWords.contains(word) {
+					remainingWords.append(word)
+				}
+			}
+			
+			if remainingWords.count > 0 {
+				for word in remainingWords {
+					fitInRandomPlace(word)
+				}
+			}
+			
+			if debug {
+				print("--- Fill All Words ---")
+				printGrid()
+			}
 		}
 	}
 	
@@ -181,6 +202,27 @@ public class CrosswordsGenerator {
 			}
 			
 			count += 1
+		}
+	}
+	
+	private func fitInRandomPlace(word: String) {
+		
+		let randomValue = randomInt(0, max: 1)
+		let directions = [randomValue, randomValue == 0 ? 1 : 0]
+		
+		for direction in directions {
+			for var i: Int = 0; i < rows; ++i {
+				for var j: Int = 0; j < columns; ++j {
+					if grid![i, j] == emptySymbol {
+						let c = j + 1
+						let r = i + 1
+						if checkFitScore(c, row: r, direction: direction, word: word) > 0 {
+							setWord(c, row: r, direction: direction, word: word, force: true)
+							return
+						}
+					}
+				}
+			}
 		}
 	}
 	
