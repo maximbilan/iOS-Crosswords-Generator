@@ -98,4 +98,22 @@ while (fabs(startTime.timeIntervalSinceNow) < timeInterval) {
 }
 </pre>
 
+Also we have option <i>fillAllWords</i>. After generation of crosswords you can fill words to grid in random places that have not intersections. For example:
+
+<pre>
+let crosswordsGenerator = CrosswordsGenerator(columns: 15, rows: 15, words: ["beijing", "havana", "rome", "paris", "amsterdam"])
+crosswordsGenerator.fillAllWords = true
+crosswordsGenerator.generate()
+
+amsterdam-b-h--
+-----o----e-a--
+-----m----i-v--
+-----e----j-a--
+paris-----i-n--
+----------n-a--
+----------g----
+---------------
+---------------
+</pre>
+
 In this repository you can found sample of working the algorithm. Feel free. Happy coding! 
