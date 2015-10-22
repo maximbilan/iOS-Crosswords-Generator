@@ -58,7 +58,7 @@ class ViewController: UIViewController {
 			Generate the best crossword in 60 seconds
 		   ---------------------------------------------------------------------- */
 		
-		let crosswordsGenerator = CrosswordsGenerator()
+		/*let crosswordsGenerator = CrosswordsGenerator()
 		crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
 		crosswordsGenerator.columns = 10
 		crosswordsGenerator.rows = 10
@@ -79,7 +79,7 @@ class ViewController: UIViewController {
 					bestResult.append(word)
 				}
 			}
-		}
+		}*/
 		
 		/* ---------------------------------------------------------------------- */
 		
@@ -95,6 +95,31 @@ class ViewController: UIViewController {
 		print(result)*/
 		
 		/* ---------------------------------------------------------------------- */
+		
+		/* ----------------------------------------------------------------------
+			Other tests with 'fill all words' mode
+		---------------------------------------------------------------------- */
+		
+		let crosswordsGenerator = CrosswordsGenerator()
+		crosswordsGenerator.words = ["van", "bat", "fan", "jug", "mug"]
+		crosswordsGenerator.columns = 15
+		crosswordsGenerator.rows = 15
+		crosswordsGenerator.fillAllWords = true
+		
+		var bestResult: Array<CrosswordsGenerator.Word> = Array()
+		let attempts = 3
+		
+		for var i: Int = 0; i < attempts; ++i {
+			crosswordsGenerator.generate()
+			let result = crosswordsGenerator.result
+			
+			if result.count > bestResult.count {
+				bestResult.removeAll()
+				for word in result {
+					bestResult.append(word)
+				}
+			}
+		}
 	}
 
 }
