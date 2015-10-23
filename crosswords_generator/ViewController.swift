@@ -101,13 +101,14 @@ class ViewController: UIViewController {
 		---------------------------------------------------------------------- */
 		
 		let crosswordsGenerator = CrosswordsGenerator()
-		crosswordsGenerator.words = ["van", "bat", "fan", "jug", "mug"]
+		//crosswordsGenerator.words = ["van", "bat", "fan", "jug", "mug"]
+		crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
 		crosswordsGenerator.columns = 15
 		crosswordsGenerator.rows = 15
 		crosswordsGenerator.fillAllWords = true
 		
 		var bestResult: Array<CrosswordsGenerator.Word> = Array()
-		let attempts = 3
+		let attempts = 5
 		
 		for var i: Int = 0; i < attempts; ++i {
 			crosswordsGenerator.generate()

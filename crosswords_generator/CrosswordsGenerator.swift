@@ -48,6 +48,7 @@ public class CrosswordsGenerator {
 	private var grid: Array2D<String>?
 	private var currentWords: Array<String> = Array()
 	private var resultData: Array<Word> = Array()
+	private var previousDirection: Int = -1
 	
 	// MARK: - Initialization
 	
@@ -89,25 +90,47 @@ public class CrosswordsGenerator {
 			printGrid()
 		}
 		
-		if fillAllWords {
-			var remainingWords = Array<String>()
-			for word in words {
-				if !currentWords.contains(word) {
-					remainingWords.append(word)
-				}
-			}
-			
-			if remainingWords.count > 0 {
-				for word in remainingWords {
-					fitInRandomPlace(word)
-				}
-			}
-			
-			if debug {
-				print("--- Fill All Words ---")
-				printGrid()
-			}
-		}
+//		if fillAllWords {
+//			previousDirection = -1
+//			
+//			var stop = false
+//			var remainingCount = 0
+//			while (!stop) {
+//				
+//				var remainingWords = Array<String>()
+//				for word in words {
+//					if !currentWords.contains(word) {
+//						remainingWords.append(word)
+//					}
+//				}
+//				
+//				if remainingWords.count > 0 {
+//					if remainingCount == remainingWords.count {
+//						for word in remainingWords {
+//							fitInRandomPlace(word)
+//						}
+//						stop = true
+//					}
+//					else {
+//						for word in remainingWords {
+//							if !currentWords.contains(word) {
+//								fitAndAdd(word)
+//							}
+//						}
+//					}
+//				}
+//				else {
+//					stop = true
+//				}
+//			
+//				remainingCount = remainingWords.count
+//			}
+//			
+//			if debug {
+//				print("--- Fill All Words ---")
+//				printGrid()
+//			}
+//		}
 	}
 	
 	private func suggestCoord(word: String) -> Array<(Int, Int, Int, Int, Int)> {
@@ -172,13 +195,16 @@ public class CrosswordsGenerator {
 		var count = 0
 		var coordlist = suggestCoord(word)
 		
+		print(word)
+		
 		while !fit && count < maxLoops {
 			
 			if currentWords.count == 0 {
 				let randomValue = randomInt(0, max: 1)
 				let direction = randomValue
-				let column = 1
-				let row = 1
+				
+				let column = 2
+				let row = 2
 
 				if checkFitScore(column, row: row, direction: direction, word: word) > 0 {
 					fit = true
@@ -197,6 +223,9 @@ public class CrosswordsGenerator {
 					}
 				}
 				else {
+					fitInRandomPlace(word)
+					fit = true
+					
 					return
 				}
 			}
@@ -207,22 +236,35 @@ public class CrosswordsGenerator {
 	
 	private func fitInRandomPlace(word: String) {
 		
-		let randomValue = randomInt(0, max: 1)
+		let firstWord = (previousDirection == -1 ? true : false)
+		let randomValue = (previousDirection == -1 ? randomInt(0, max: 1) : (previousDirection == 0 ? 1 : 0))
 		let directions = [randomValue, randomValue == 0 ? 1 : 0]
+		var bestScore = 0
+		var bestColumn = 0
+		var bestRow = 0
+		var bestDirection = 0
 		
 		for direction in directions {
-			for var i: Int = 0; i < rows; ++i {
-				for var j: Int = 0; j < columns; ++j {
+			for var i: Int = firstWord ? 1 : 0; i < rows; ++i {
+				for var j: Int = firstWord ? 1 : 0; j < columns; ++j {
 					if grid![i, j] == emptySymbol {
 						let c = j + 1
 						let r = i + 1
-						if checkFitScore(c, row: r, direction: direction, word: word) > 0 {
-							setWord(c, row: r, direction: direction, word: word, force: true)
-							return
+						let score = checkFitScore(c, row: r, direction: direction, word: word)
+						if score > bestScore {
+							bestScore = score
+							bestColumn = c
+							bestRow = r
+							bestDirection = direction
 						}
 					}
 				}
 			}
+		}
+		
+		if bestScore > 0 {
+			previousDirection = bestDirection
+			setWord(bestColumn, row: bestRow, direction: bestDirection, word: word, force: true)
 		}
 	}
 	
