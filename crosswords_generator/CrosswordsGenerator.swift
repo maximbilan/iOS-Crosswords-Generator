@@ -398,6 +398,48 @@ public class CrosswordsGenerator {
 		}
 	}
 	
+	// MARK: - Public info methods
+	
+	public func maxColumn() -> Int {
+		var column = 0
+		for (var i = 0; i < rows; ++i) {
+			for (var j = 0; j < columns; ++j) {
+				if grid![i, j] != emptySymbol {
+					if j > column {
+						column = j
+					}
+				}
+			}
+		}
+		return column + 1
+	}
+	
+	public func maxRow() -> Int {
+		var row = 0
+		for (var i = 0; i < rows; ++i) {
+			for (var j = 0; j < columns; ++j) {
+				if grid![i, j] != emptySymbol {
+					if i > row {
+						row = i
+					}
+				}
+			}
+		}
+		return row + 1
+	}
+	
+	public func lettersCount() -> Int {
+		var count = 0
+		for (var i = 0; i < rows; ++i) {
+			for (var j = 0; j < columns; ++j) {
+				if grid![i, j] != emptySymbol {
+					++count
+				}
+			}
+		}
+		return count
+	}
+	
 	// MARK: - Misc
 	
 	private func randomInt(min: Int, max:Int) -> Int {

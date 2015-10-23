@@ -121,6 +121,10 @@ class ViewController: UIViewController {
 				}
 			}
 		}
+		
+		print("Max column: \(crosswordsGenerator.maxColumn())")
+		print("Max row: \(crosswordsGenerator.maxRow())")
+		print("Letters count: \(crosswordsGenerator.lettersCount())")
 	}
 
 }
