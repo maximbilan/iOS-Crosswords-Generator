@@ -90,47 +90,54 @@ public class CrosswordsGenerator {
 			printGrid()
 		}
 		
-//		if fillAllWords {
-//			previousDirection = -1
-//			
-//			var stop = false
-//			var remainingCount = 0
-//			while (!stop) {
-//				
-//				var remainingWords = Array<String>()
-//				for word in words {
-//					if !currentWords.contains(word) {
-//						remainingWords.append(word)
-//					}
-//				}
-//				
-//				if remainingWords.count > 0 {
-//					if remainingCount == remainingWords.count {
-//						for word in remainingWords {
-//							fitInRandomPlace(word)
-//						}
-//						stop = true
-//					}
-//					else {
-//						for word in remainingWords {
-//							if !currentWords.contains(word) {
-//								fitAndAdd(word)
-//							}
-//						}
-//					}
-//				}
-//				else {
-//					stop = true
-//				}
-//			
-//				remainingCount = remainingWords.count
-//			}
-//			
-//			if debug {
-//				print("--- Fill All Words ---")
-//				printGrid()
-//			}
-//		}
+		if fillAllWords {
+			
+			var remainingWords = Array<String>()
+			for word in words {
+				if !currentWords.contains(word) {
+					remainingWords.append(word)
+				}
+			}
+			
+			var moreLikely = Set<String>()
+			var lessLikely = Set<String>()
+			for word in remainingWords {
+				var hasSameLetters = false
+				for comparingWord in remainingWords {
+					if word != comparingWord {
+						let letters = NSCharacterSet(charactersInString: comparingWord)
+						let range = word.rangeOfCharacterFromSet(letters)
+						
+						if let _ = range {
+							hasSameLetters = true
+							break
+						}
+					}
+				}
+				
+				if hasSameLetters {
+					moreLikely.insert(word)
+				}
+				else {
+					lessLikely.insert(word)
+				}
+			}
+			
+			remainingWords.removeAll()
+			remainingWords.appendContentsOf(moreLikely)
+			remainingWords.appendContentsOf(lessLikely)
+			
+			for word in remainingWords {
+				if !fitAndAdd(word) {
+					fitInRandomPlace(word)
+				}
+			}
+			
+			if debug {
+				print("--- Fill All Words ---")
+				printGrid()
+			}
+		}
 	}
 	
 	private func suggestCoord(word: String) -> Array<(Int, Int, Int, Int, Int)> {
@@ -189,13 +196,11 @@ public class CrosswordsGenerator {
 		return newCoordlist
 	}
 	
-	private func fitAndAdd(word: String) {
+	private func fitAndAdd(word: String) -> Bool {
 		
 		var fit = false
 		var count = 0
 		var coordlist = suggestCoord(word)
-		
-		print(word)
 		
 		while !fit && count < maxLoops {
 			
@@ -223,21 +228,19 @@ public class CrosswordsGenerator {
 					}
 				}
 				else {
-					fitInRandomPlace(word)
-					fit = true
-					
-					return
+					return false
 				}
 			}
 			
 			count += 1
 		}
+		
+		return true
 	}
 	
 	private func fitInRandomPlace(word: String) {
 		
-		let firstWord = (previousDirection == -1 ? true : false)
-		let randomValue = (previousDirection == -1 ? randomInt(0, max: 1) : (previousDirection == 0 ? 1 : 0))
+		let randomValue = randomInt(0, max: 1)
 		let directions = [randomValue, randomValue == 0 ? 1 : 0]
 		var bestScore = 0
 		var bestColumn = 0
@@ -245,8 +248,8 @@ public class CrosswordsGenerator {
 		var bestDirection = 0
 		
 		for direction in directions {
-			for var i: Int = firstWord ? 1 : 0; i < rows; ++i {
-				for var j: Int = firstWord ? 1 : 0; j < columns; ++j {
+			for var i: Int = 1; i < rows - 1; ++i {
+				for var j: Int = 1; j < columns - 1; ++j {
 					if grid![i, j] == emptySymbol {
 						let c = j + 1
 						let r = i + 1
