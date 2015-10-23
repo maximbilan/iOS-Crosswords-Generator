@@ -48,7 +48,6 @@ public class CrosswordsGenerator {
 	private var grid: Array2D<String>?
 	private var currentWords: Array<String> = Array()
 	private var resultData: Array<Word> = Array()
-	private var previousDirection: Int = -1
 	
 	// MARK: - Initialization
 	
@@ -208,8 +207,9 @@ public class CrosswordsGenerator {
 				let randomValue = randomInt(0, max: 1)
 				let direction = randomValue
 				
-				let column = 2
-				let row = 2
+				// +1 offset for the first word, so more likely intersections for short words
+				let column = 1 + 1
+				let row = 1 + 1
 
 				if checkFitScore(column, row: row, direction: direction, word: word) > 0 {
 					fit = true
@@ -266,7 +266,6 @@ public class CrosswordsGenerator {
 		}
 		
 		if bestScore > 0 {
-			previousDirection = bestDirection
 			setWord(bestColumn, row: bestRow, direction: bestDirection, word: word, force: true)
 		}
 	}
