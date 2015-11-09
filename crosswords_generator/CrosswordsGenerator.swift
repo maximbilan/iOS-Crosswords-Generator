@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class CrosswordsGenerator {
 
@@ -42,6 +43,7 @@ public class CrosswordsGenerator {
 	public var fillAllWords = false
 	public var emptySymbol = "-"
 	public var debug = true
+	public var orientationOptimization = false
 	
 	// MARK: - Logic properties
 	
@@ -204,8 +206,7 @@ public class CrosswordsGenerator {
 		while !fit && count < maxLoops {
 			
 			if currentWords.count == 0 {
-				let randomValue = randomInt(0, max: 1)
-				let direction = randomValue
+				let direction = randomValue()
 				
 				// +1 offset for the first word, so more likely intersections for short words
 				let column = 1 + 1
@@ -240,8 +241,8 @@ public class CrosswordsGenerator {
 	
 	private func fitInRandomPlace(word: String) {
 		
-		let randomValue = randomInt(0, max: 1)
-		let directions = [randomValue, randomValue == 0 ? 1 : 0]
+		let value = randomValue()
+		let directions = [value, value == 0 ? 1 : 0]
 		var bestScore = 0
 		var bestColumn = 0
 		var bestRow = 0
@@ -441,6 +442,15 @@ public class CrosswordsGenerator {
 	}
 	
 	// MARK: - Misc
+	
+	private func randomValue() -> Int {
+		if orientationOptimization {
+			return UIDevice.currentDevice().orientation.isLandscape ? 1 : 0
+		}
+		else {
+			return randomInt(0, max: 1)
+		}
+	}
 	
 	private func randomInt(min: Int, max:Int) -> Int {
 		return min + Int(arc4random_uniform(UInt32(max - min + 1)))

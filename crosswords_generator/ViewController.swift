@@ -17,10 +17,10 @@ class ViewController: UIViewController {
 			Generate one crossword
 		   ---------------------------------------------------------------------- */
 		
-		/*let crosswordsGenerator = CrosswordsGenerator(columns: 13, rows: 13, words: ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"])
+		let crosswordsGenerator = CrosswordsGenerator(columns: 13, rows: 13, words: ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"])
 		crosswordsGenerator.generate()
 		
-		_ = crosswordsGenerator.result*/
+		_ = crosswordsGenerator.result
 		
 		/* ---------------------------------------------------------------------- */
 	
@@ -100,7 +100,7 @@ class ViewController: UIViewController {
 			Other tests with 'fill all words' mode
 		---------------------------------------------------------------------- */
 		
-		let crosswordsGenerator = CrosswordsGenerator()
+		/*let crosswordsGenerator = CrosswordsGenerator()
 		crosswordsGenerator.words = ["van", "bat", "fan", "jug", "mug"]
 		//crosswordsGenerator.words = ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"]
 		crosswordsGenerator.columns = 15
@@ -124,7 +124,24 @@ class ViewController: UIViewController {
 		
 		print("Max column: \(crosswordsGenerator.maxColumn())")
 		print("Max row: \(crosswordsGenerator.maxRow())")
-		print("Letters count: \(crosswordsGenerator.lettersCount())")
+		print("Letters count: \(crosswordsGenerator.lettersCount())")*/
+		
+		/* ----------------------------------------------------------------------
+			Generate one crossword with 'fill all words' mode and orientation optimization mode
+		---------------------------------------------------------------------- */
+		
+		/*let crosswordsGenerator = CrosswordsGenerator(columns: 15, rows: 15, words: ["beijing", "havana", "rome", "paris", "amsterdam"])
+		crosswordsGenerator.fillAllWords = true
+		crosswordsGenerator.generate()
+		
+		let result1 = crosswordsGenerator.result
+		print(result1)
+		
+		crosswordsGenerator.orientationOptimization = true
+		crosswordsGenerator.generate()
+		
+		let result2 = crosswordsGenerator.result
+		print(result2)*/
 	}
 
 }
