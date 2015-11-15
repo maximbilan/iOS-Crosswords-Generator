@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		
 		/* ----------------------------------------------------------------------
 			Generate one crossword
 		   ---------------------------------------------------------------------- */
@@ -23,7 +24,6 @@ class ViewController: UIViewController {
 		_ = crosswordsGenerator.result
 		
 		/* ---------------------------------------------------------------------- */
-	
 		
 		
 		/* ----------------------------------------------------------------------
@@ -51,7 +51,6 @@ class ViewController: UIViewController {
 		}*/
 		
 		/* ---------------------------------------------------------------------- */
-		
 		
 		
 		/* ----------------------------------------------------------------------
@@ -83,6 +82,7 @@ class ViewController: UIViewController {
 		
 		/* ---------------------------------------------------------------------- */
 		
+		
 		/* ----------------------------------------------------------------------
 			Generate one crossword with 'fill all words' mode
 			---------------------------------------------------------------------- */
@@ -95,6 +95,7 @@ class ViewController: UIViewController {
 		print(result)*/
 		
 		/* ---------------------------------------------------------------------- */
+		
 		
 		/* ----------------------------------------------------------------------
 			Other tests with 'fill all words' mode
@@ -125,6 +126,9 @@ class ViewController: UIViewController {
 		print("Max column: \(crosswordsGenerator.maxColumn())")
 		print("Max row: \(crosswordsGenerator.maxRow())")
 		print("Letters count: \(crosswordsGenerator.lettersCount())")*/
+		
+		/* ---------------------------------------------------------------------- */
+		
 		
 		/* ----------------------------------------------------------------------
 			Generate one crossword with 'fill all words' mode and orientation optimization mode
