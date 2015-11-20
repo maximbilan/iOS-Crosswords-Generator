@@ -7,19 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6D282DC81BA8476700930D19 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D282DC71BA8476700930D19 /* Array2D.swift */; settings = {ASSET_TAGS = (); }; };
-		6D282DCA1BA8728900930D19 /* ArrayShuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D282DC91BA8728900930D19 /* ArrayShuffle.swift */; settings = {ASSET_TAGS = (); }; };
 		6D35C4F51BA3098200B561B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C4F41BA3098200B561B1 /* AppDelegate.swift */; };
 		6D35C4F71BA3098200B561B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C4F61BA3098200B561B1 /* ViewController.swift */; };
 		6D35C4FA1BA3098200B561B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D35C4F81BA3098200B561B1 /* Main.storyboard */; };
 		6D35C4FC1BA3098200B561B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D35C4FB1BA3098200B561B1 /* Assets.xcassets */; };
 		6D35C4FF1BA3098200B561B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D35C4FD1BA3098200B561B1 /* LaunchScreen.storyboard */; };
-		6D35C5071BA30C8C00B561B1 /* CrosswordsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C5061BA30C8C00B561B1 /* CrosswordsGenerator.swift */; settings = {ASSET_TAGS = (); }; };
+		6D5297691BFF28D300C4CE15 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5297671BFF28D300C4CE15 /* Array2D.swift */; };
+		6D52976A1BFF28D300C4CE15 /* ArrayShuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5297681BFF28D300C4CE15 /* ArrayShuffle.swift */; };
+		6D52976C1BFF28DB00C4CE15 /* CrosswordsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D52976B1BFF28DB00C4CE15 /* CrosswordsGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6D282DC71BA8476700930D19 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
-		6D282DC91BA8728900930D19 /* ArrayShuffle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayShuffle.swift; sourceTree = "<group>"; };
 		6D35C4F11BA3098200B561B1 /* crosswords_generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crosswords_generator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D35C4F41BA3098200B561B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D35C4F61BA3098200B561B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -27,7 +25,9 @@
 		6D35C4FB1BA3098200B561B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D35C4FE1BA3098200B561B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D35C5001BA3098200B561B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6D35C5061BA30C8C00B561B1 /* CrosswordsGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrosswordsGenerator.swift; sourceTree = "<group>"; };
+		6D5297671BFF28D300C4CE15 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Array2D.swift; path = Sources/Array2D.swift; sourceTree = "<group>"; };
+		6D5297681BFF28D300C4CE15 /* ArrayShuffle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrayShuffle.swift; path = Sources/ArrayShuffle.swift; sourceTree = "<group>"; };
+		6D52976B1BFF28DB00C4CE15 /* CrosswordsGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrosswordsGenerator.swift; path = Sources/CrosswordsGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,24 +66,24 @@
 			path = crosswords_generator;
 			sourceTree = "<group>";
 		};
+		6D5297661BFF28B400C4CE15 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				6D5297671BFF28D300C4CE15 /* Array2D.swift */,
+				6D5297681BFF28D300C4CE15 /* ArrayShuffle.swift */,
+			);
+			name = Extentions;
+			sourceTree = "<group>";
+		};
 		6DFC96C01BAAFC960000B22F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				6DFC96C11BAAFCA90000B22F /* Extensions */,
-				6D35C5061BA30C8C00B561B1 /* CrosswordsGenerator.swift */,
+				6D5297661BFF28B400C4CE15 /* Extentions */,
 				6D35C4F41BA3098200B561B1 /* AppDelegate.swift */,
 				6D35C4F61BA3098200B561B1 /* ViewController.swift */,
+				6D52976B1BFF28DB00C4CE15 /* CrosswordsGenerator.swift */,
 			);
 			name = Sources;
-			sourceTree = "<group>";
-		};
-		6DFC96C11BAAFCA90000B22F /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				6D282DC71BA8476700930D19 /* Array2D.swift */,
-				6D282DC91BA8728900930D19 /* ArrayShuffle.swift */,
-			);
-			name = Extensions;
 			sourceTree = "<group>";
 		};
 		6DFC96C21BAAFCBB0000B22F /* Resources */ = {
@@ -168,10 +168,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D35C4F71BA3098200B561B1 /* ViewController.swift in Sources */,
-				6D282DCA1BA8728900930D19 /* ArrayShuffle.swift in Sources */,
-				6D282DC81BA8476700930D19 /* Array2D.swift in Sources */,
-				6D35C5071BA30C8C00B561B1 /* CrosswordsGenerator.swift in Sources */,
+				6D52976A1BFF28D300C4CE15 /* ArrayShuffle.swift in Sources */,
+				6D5297691BFF28D300C4CE15 /* Array2D.swift in Sources */,
 				6D35C4F51BA3098200B561B1 /* AppDelegate.swift in Sources */,
+				6D52976C1BFF28DB00C4CE15 /* CrosswordsGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
