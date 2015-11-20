@@ -14,10 +14,10 @@ public class CrosswordsGenerator {
 	// MARK: - Additional types
 	
 	public struct Word {
-		var word = ""
-		var column = 0
-		var row = 0
-		var direction: WordDirection = .Vertical
+		public var word = ""
+		public var column = 0
+		public var row = 0
+		public var direction: WordDirection = .Vertical
 	}
 	
 	public enum WordDirection {
