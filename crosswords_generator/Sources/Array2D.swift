@@ -8,19 +8,19 @@
 
 import Foundation
 
-class Array2D<T> {
+public class Array2D<T> {
 	
-	var columns: Int
-	var rows: Int
-	var matrix: [T]
+	public var columns: Int
+	public var rows: Int
+	public var matrix: [T]
 	
-	init(columns: Int, rows: Int, defaultValue: T) {
+	public init(columns: Int, rows: Int, defaultValue: T) {
 		self.columns = columns
 		self.rows = rows
 		matrix = Array(count: columns * rows, repeatedValue: defaultValue)
 	}
 	
-	subscript(column: Int, row: Int) -> T {
+	public subscript(column: Int, row: Int) -> T {
 		get {
 			return matrix[columns * row + column]
 		}
@@ -29,11 +29,11 @@ class Array2D<T> {
 		}
 	}
 	
-	func columnCount() -> Int {
+	public func columnCount() -> Int {
 		return self.columns
 	}
 	
-	func rowCount() -> Int {
+	public func rowCount() -> Int {
 		return self.rows
 	}
 }

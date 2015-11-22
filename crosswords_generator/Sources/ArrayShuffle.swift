@@ -8,16 +8,16 @@
 
 import Foundation
 
-extension CollectionType where Index == Int {
-	func shuffle() -> [Generator.Element] {
+public extension CollectionType where Index == Int {
+	public func shuffle() -> [Generator.Element] {
 		var list = Array(self)
 		list.shuffleInPlace()
 		return list
 	}
 }
 
-extension MutableCollectionType where Index == Int {
-	mutating func shuffleInPlace() {
+public extension MutableCollectionType where Index == Int {
+	public mutating func shuffleInPlace() {
 		if count < 2 {
 			return
 		}
