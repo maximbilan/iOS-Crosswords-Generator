@@ -2,7 +2,7 @@
 
 Simple algorithm for generating crosswords written on <i>Swift</i>. Based on <a href="http://bryanhelmig.com/python-crossword-puzzle-generator/"> Python Crossword Puzzle Generator.</a>
 
-# How to install:
+# How to install
 
 Cocoapods:
 
@@ -16,7 +16,9 @@ Manual:
 Copy CrosswordsGenerator.swift, Array2D.swift, ArrayShuffle.swift files to your project.
 </pre>
 
-For simple using:
+# Using
+
+Initialization and crosswords generation:
 
 <pre>
 let generator = CrosswordsGenerator(columns: 10, rows: 10, maxLoops: 2000, words: ["saffron", "pumpernickel", "leaven", "coda", "paladin", "syncopation", "albatross", "harp", "piston", "caramel", "coral", "dawn", "pitch", "fjord", "lip", "lime", "mist", "plague", "yarn", "snicker"])
