@@ -13,7 +13,7 @@ pod 'CrosswordsGenerator'
 Manual:
 
 <pre>
-Copy CrosswordsGenerator.swift, Array2D.swift, ArrayShuffle.swift files to your project.
+Copy <i>CrosswordsGenerator.swift</i>, <i>Array2D.swift</i>, <i>ArrayShuffle.swift</i> files to your project.
 </pre>
 
 # Using
