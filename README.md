@@ -4,7 +4,7 @@ Simple algorithm for generating crosswords written on <i>Swift</i>. Based on <a 
 
 # How to install
 
-Cocoapods:
+CocoaPods:
 
 <pre>
 pod 'CrosswordsGenerator'
