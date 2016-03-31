@@ -149,10 +149,10 @@ public class CrosswordsGenerator {
 		for letter in word.characters {
 			glc += 1
 			var rowc = 0
-			for (var row: Int = 0; row < rows; ++row) {
+			for (var row: Int = 0; row < rows; row += 1) {
 				rowc += 1
 				var colc = 0
-				for (var column: Int = 0; column < columns; ++column) {
+				for (var column: Int = 0; column < columns; column += 1) {
 					colc += 1
 					
 					let cell = grid![row, column]
@@ -249,7 +249,7 @@ public class CrosswordsGenerator {
 		var bestDirection = 0
 		
 		for direction in directions {
-			for var i: Int = 1; i < rows - 1; ++i {
+			for var i: Int = 1; i < rows - 1; i += 1 {
 				for var j: Int = 1; j < columns - 1; ++j {
 					if grid![i, j] == emptySymbol {
 						let c = j + 1
