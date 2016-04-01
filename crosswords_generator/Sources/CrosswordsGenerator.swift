@@ -431,10 +431,10 @@ public class CrosswordsGenerator {
 	
 	public func lettersCount() -> Int {
 		var count = 0
-		for (var i = 0; i < rows; ++i) {
-			for (var j = 0; j < columns; ++j) {
+		for (var i = 0; i < rows; i+=1) {
+			for (var j = 0; j < columns; j+=1) {
 				if grid![i, j] != emptySymbol {
-					++count
+					count += 1
 				}
 			}
 		}
@@ -459,9 +459,9 @@ public class CrosswordsGenerator {
 	// MARK: - Debug
 	
 	func printGrid() {
-		for (var i = 0; i < rows; ++i) {
+		for (var i = 0; i < rows; i+=1) {
 			var s = ""
-			for (var j = 0; j < columns; ++j) {
+			for (var j = 0; j < columns; j+=1) {
 				s += grid![i, j]
 			}
 			print(s)
