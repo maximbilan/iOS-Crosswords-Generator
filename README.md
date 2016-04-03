@@ -4,13 +4,13 @@ Simple algorithm for generating crosswords written on <i>Swift</i>. Based on <a 
 
 # How to install
 
-CocoaPods:
+<b>CocoaPods:</b>
 
 <pre>
 pod 'CrosswordsGenerator'
 </pre>
 
-Manual:
+<b>Manual:</b>
 
 <pre>
 Copy <i>CrosswordsGenerator.swift</i>, <i>Array2D.swift</i>, <i>ArrayShuffle.swift</i> files to your project.
