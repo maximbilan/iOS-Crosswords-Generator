@@ -250,7 +250,7 @@ public class CrosswordsGenerator {
 		
 		for direction in directions {
 			for var i: Int = 1; i < rows - 1; i += 1 {
-				for var j: Int = 1; j < columns - 1; ++j {
+				for var j: Int = 1; j < columns - 1; j += 1 {
 					if grid![i, j] == emptySymbol {
 						let c = j + 1
 						let r = i + 1
@@ -403,8 +403,8 @@ public class CrosswordsGenerator {
 	
 	public func maxColumn() -> Int {
 		var column = 0
-		for (var i = 0; i < rows; ++i) {
-			for (var j = 0; j < columns; ++j) {
+		for (var i = 0; i < rows; i += 1) {
+			for (var j = 0; j < columns; j += 1) {
 				if grid![i, j] != emptySymbol {
 					if j > column {
 						column = j
@@ -417,8 +417,8 @@ public class CrosswordsGenerator {
 	
 	public func maxRow() -> Int {
 		var row = 0
-		for (var i = 0; i < rows; ++i) {
-			for (var j = 0; j < columns; ++j) {
+		for (var i = 0; i < rows; i+=1) {
+			for (var j = 0; j < columns; j+=1) {
 				if grid![i, j] != emptySymbol {
 					if i > row {
 						row = i
