@@ -133,4 +133,4 @@ paris-----i-n--
 ---------------
 </pre>
 
-In this repository you can found sample of working the algorithm. Feel free. Happy coding! 
+In this repository you can found sample of working of this algorithm. Feel free. Happy coding! 
