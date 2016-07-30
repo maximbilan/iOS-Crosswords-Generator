@@ -459,9 +459,9 @@ public class CrosswordsGenerator {
 	// MARK: - Debug
 	
 	func printGrid() {
-		for (var i = 0; i < rows; i+=1) {
+		for (var i = 0; i < rows; i += 1) {
 			var s = ""
-			for (var j = 0; j < columns; j+=1) {
+			for (var j = 0; j < columns; j += 1) {
 				s += grid![i, j]
 			}
 			print(s)
