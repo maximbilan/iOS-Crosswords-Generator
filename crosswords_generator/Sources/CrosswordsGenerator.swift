@@ -431,8 +431,8 @@ public class CrosswordsGenerator {
 	
 	public func lettersCount() -> Int {
 		var count = 0
-		for (var i = 0; i < rows; i+=1) {
-			for (var j = 0; j < columns; j+=1) {
+		for i in 0 ..< rows {
+			for j in 0 ..< columns {
 				if grid![i, j] != emptySymbol {
 					count += 1
 				}
