@@ -152,7 +152,7 @@ public class CrosswordsGenerator {
 			for row: Int in 0 ..< rows {
 				rowc += 1
 				var colc = 0
-				for (var column: Int = 0; column < columns; column += 1) {
+				for column: Int in 0 ..< columns {
 					colc += 1
 					
 					let cell = grid![row, column]
