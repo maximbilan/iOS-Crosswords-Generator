@@ -249,8 +249,8 @@ public class CrosswordsGenerator {
 		var bestDirection = 0
 		
 		for direction in directions {
-			for var i: Int = 1; i < rows - 1; i += 1 {
-				for var j: Int = 1; j < columns - 1; j += 1 {
+			for i: Int in 1 ..< rows - 1 {
+				for j: Int in 1 ..< columns - 1 {
 					if grid![i, j] == emptySymbol {
 						let c = j + 1
 						let r = i + 1
