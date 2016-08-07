@@ -6,7 +6,6 @@
 //  Copyright © 2015 Maxim Bilan. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 public class CrosswordsGenerator {
