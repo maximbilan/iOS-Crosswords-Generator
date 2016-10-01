@@ -81,7 +81,7 @@ open class CrosswordsGenerator {
 		
 		for word in words {
 			if !currentWords.contains(word) {
-				fitAndAdd(word)
+				_ = fitAndAdd(word)
 			}
 		}
 		
@@ -190,7 +190,7 @@ open class CrosswordsGenerator {
 			}
 		}
 		
-		newCoordlist.shuffleInPlace()
+		newCoordlist.shuffle()
 		newCoordlist.sort(by: {$0.4 > $1.4})
 		
 		return newCoordlist
