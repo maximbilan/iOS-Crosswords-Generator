@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CrosswordsGenerator {
+open class CrosswordsGenerator {
 
 	// MARK: - Additional types
 	
@@ -16,22 +16,22 @@ public class CrosswordsGenerator {
 		public var word = ""
 		public var column = 0
 		public var row = 0
-		public var direction: WordDirection = .Vertical
+		public var direction: WordDirection = .vertical
 	}
 	
 	public enum WordDirection {
-		case Vertical
-		case Horizontal
+		case vertical
+		case horizontal
 	}
 	
 	// MARK: - Public properties
 	
-	public var columns: Int = 0
-	public var rows: Int = 0
-	public var maxLoops: Int = 2000
-	public var words: Array<String> = Array()
+	open var columns: Int = 0
+	open var rows: Int = 0
+	open var maxLoops: Int = 2000
+	open var words: Array<String> = Array()
 	
-	public var result: Array<Word> {
+	open var result: Array<Word> {
 		get {
 			return resultData
 		}
@@ -39,16 +39,16 @@ public class CrosswordsGenerator {
 	
 	// MARK: - Public additional properties
 	
-	public var fillAllWords = false
-	public var emptySymbol = "-"
-	public var debug = true
-	public var orientationOptimization = false
+	open var fillAllWords = false
+	open var emptySymbol = "-"
+	open var debug = true
+	open var orientationOptimization = false
 	
 	// MARK: - Logic properties
 	
-	private var grid: Array2D<String>?
-	private var currentWords: Array<String> = Array()
-	private var resultData: Array<Word> = Array()
+	fileprivate var grid: Array2D<String>?
+	fileprivate var currentWords: Array<String> = Array()
+	fileprivate var resultData: Array<Word> = Array()
 	
 	// MARK: - Initialization
 	
@@ -64,7 +64,7 @@ public class CrosswordsGenerator {
 	
 	// MARK: - Crosswords generation
 	
-	public func generate() {
+	open func generate() {
 		
 		self.grid = nil
 		self.grid = Array2D(columns: columns, rows: rows, defaultValue: emptySymbol)
@@ -72,7 +72,7 @@ public class CrosswordsGenerator {
 		currentWords.removeAll()
 		resultData.removeAll()
 		
-		words.sortInPlace({$0.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > $1.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)})
+		words.sort(by: {$0.lengthOfBytes(using: String.Encoding.utf8) > $1.lengthOfBytes(using: String.Encoding.utf8)})
 		
 		if debug {
 			print("--- Words ---")
@@ -105,8 +105,8 @@ public class CrosswordsGenerator {
 				var hasSameLetters = false
 				for comparingWord in remainingWords {
 					if word != comparingWord {
-						let letters = NSCharacterSet(charactersInString: comparingWord)
-						let range = word.rangeOfCharacterFromSet(letters)
+						let letters = CharacterSet(charactersIn: comparingWord)
+						let range = word.rangeOfCharacter(from: letters)
 						
 						if let _ = range {
 							hasSameLetters = true
@@ -124,8 +124,8 @@ public class CrosswordsGenerator {
 			}
 			
 			remainingWords.removeAll()
-			remainingWords.appendContentsOf(moreLikely)
-			remainingWords.appendContentsOf(lessLikely)
+			remainingWords.append(contentsOf: moreLikely)
+			remainingWords.append(contentsOf: lessLikely)
 			
 			for word in remainingWords {
 				if !fitAndAdd(word) {
@@ -140,7 +140,7 @@ public class CrosswordsGenerator {
 		}
 	}
 	
-	private func suggestCoord(word: String) -> Array<(Int, Int, Int, Int, Int)> {
+	fileprivate func suggestCoord(_ word: String) -> Array<(Int, Int, Int, Int, Int)> {
 		
 		var coordlist = Array<(Int, Int, Int, Int, Int)>()
 		var glc = -1
@@ -157,13 +157,13 @@ public class CrosswordsGenerator {
 					let cell = grid![row, column]
 					if String(letter) == cell {
 						if rowc - glc > 0 {
-							if ((rowc - glc) + word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)) <= rows {
+							if ((rowc - glc) + word.lengthOfBytes(using: String.Encoding.utf8)) <= rows {
 								coordlist.append((colc, rowc - glc, 1, colc + (rowc - glc), 0))
 							}
 						}
 						
 						if colc - glc > 0 {
-							if ((colc - glc) + word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)) <= columns {
+							if ((colc - glc) + word.lengthOfBytes(using: String.Encoding.utf8)) <= columns {
 								coordlist.append((colc - glc, rowc, 0, rowc + (colc - glc), 0))
 							}
 						}
@@ -176,7 +176,7 @@ public class CrosswordsGenerator {
 		return newCoordlist
 	}
 	
-	private func sortCoordlist(coordlist: Array<(Int, Int, Int, Int, Int)>, word: String) -> Array<(Int, Int, Int, Int, Int)> {
+	fileprivate func sortCoordlist(_ coordlist: Array<(Int, Int, Int, Int, Int)>, word: String) -> Array<(Int, Int, Int, Int, Int)> {
 		
 		var newCoordlist = Array<(Int, Int, Int, Int, Int)>()
 		
@@ -191,12 +191,12 @@ public class CrosswordsGenerator {
 		}
 		
 		newCoordlist.shuffleInPlace()
-		newCoordlist.sortInPlace({$0.4 > $1.4})
+		newCoordlist.sort(by: {$0.4 > $1.4})
 		
 		return newCoordlist
 	}
 	
-	private func fitAndAdd(word: String) -> Bool {
+	fileprivate func fitAndAdd(_ word: String) -> Bool {
 		
 		var fit = false
 		var count = 0
@@ -238,7 +238,7 @@ public class CrosswordsGenerator {
 		return true
 	}
 	
-	private func fitInRandomPlace(word: String) {
+	fileprivate func fitInRandomPlace(_ word: String) {
 		
 		let value = randomValue()
 		let directions = [value, value == 0 ? 1 : 0]
@@ -270,7 +270,7 @@ public class CrosswordsGenerator {
 		}
 	}
 	
-	private func checkFitScore(column: Int, row: Int, direction: Int, word: String) -> Int {
+	fileprivate func checkFitScore(_ column: Int, row: Int, direction: Int, word: String) -> Int {
 		
 		var c = column
 		var r = row
@@ -307,7 +307,7 @@ public class CrosswordsGenerator {
 						}
 					}
 					
-					if count == word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) {
+					if count == word.lengthOfBytes(using: String.Encoding.utf8) {
 						if !checkIfCellClear(c + 1, row: row) {
 							return 0
 						}
@@ -330,7 +330,7 @@ public class CrosswordsGenerator {
 						}
 					}
 					
-					if count == word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) {
+					if count == word.lengthOfBytes(using: String.Encoding.utf8) {
 						if !checkIfCellClear(c, row: r + 1) {
 							return 0
 						}
@@ -358,15 +358,15 @@ public class CrosswordsGenerator {
 		return score
 	}
 	
-	func setCell(column: Int, row: Int, value: String) {
+	func setCell(_ column: Int, row: Int, value: String) {
 		grid![row - 1, column - 1] = value
 	}
  
-	func getCell(column: Int, row: Int) -> String{
+	func getCell(_ column: Int, row: Int) -> String{
 		return grid![row - 1, column - 1]
 	}
 	
-	func checkIfCellClear(column: Int, row: Int) -> Bool {
+	func checkIfCellClear(_ column: Int, row: Int) -> Bool {
 		if column > 0 && row > 0 && column < columns && row < rows {
 			return getCell(column, row: row) == emptySymbol ? true : false
 		}
@@ -375,10 +375,10 @@ public class CrosswordsGenerator {
 		}
 	}
 	
-	private func setWord(column: Int, row: Int, direction: Int, word: String, force: Bool = false) {
+	fileprivate func setWord(_ column: Int, row: Int, direction: Int, word: String, force: Bool = false) {
 		
 		if force {
-			let w = Word(word: word, column: column, row: row, direction: (direction == 0 ? .Horizontal : .Vertical))
+			let w = Word(word: word, column: column, row: row, direction: (direction == 0 ? .horizontal : .vertical))
 			resultData.append(w)
 			
 			currentWords.append(word)
@@ -400,7 +400,7 @@ public class CrosswordsGenerator {
 	
 	// MARK: - Public info methods
 	
-	public func maxColumn() -> Int {
+	open func maxColumn() -> Int {
 		var column = 0
 		for i in 0 ..< rows {
 			for j in 0 ..< columns {
@@ -414,7 +414,7 @@ public class CrosswordsGenerator {
 		return column + 1
 	}
 	
-	public func maxRow() -> Int {
+	open func maxRow() -> Int {
 		var row = 0
 		for i in 0 ..< rows {
 			for j in 0 ..< columns {
@@ -428,7 +428,7 @@ public class CrosswordsGenerator {
 		return row + 1
 	}
 	
-	public func lettersCount() -> Int {
+	open func lettersCount() -> Int {
 		var count = 0
 		for i in 0 ..< rows {
 			for j in 0 ..< columns {
@@ -442,16 +442,16 @@ public class CrosswordsGenerator {
 	
 	// MARK: - Misc
 	
-	private func randomValue() -> Int {
+	fileprivate func randomValue() -> Int {
 		if orientationOptimization {
-			return UIDevice.currentDevice().orientation.isLandscape ? 1 : 0
+			return UIDevice.current.orientation.isLandscape ? 1 : 0
 		}
 		else {
 			return randomInt(0, max: 1)
 		}
 	}
 	
-	private func randomInt(min: Int, max:Int) -> Int {
+	fileprivate func randomInt(_ min: Int, max:Int) -> Int {
 		return min + Int(arc4random_uniform(UInt32(max - min + 1)))
 	}
 	
