@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 s.name         = "CrosswordsGenerator"
 s.version      = "0.3.1"
 s.summary      = "Crosswords Generator"
-s.description  = "iOS Swift Crosswords Gemerator"
+s.description  = "iOS Swift Crosswords Generator"
 s.homepage     = "https://github.com/maximbilan/ios_crosswords_generator"
 s.license      = { :type => "MIT" }
 s.author       = { "Maxim Bilan" => "maximb.mail@gmail.com" }
