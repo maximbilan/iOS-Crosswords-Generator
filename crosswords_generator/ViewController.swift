@@ -38,7 +38,7 @@ class ViewController: UIViewController {
 		var bestResult: Array<CrosswordsGenerator.Word> = Array()
 		let attempts = 10
 		
-		for var i: Int = 0; i < attempts; ++i {
+		for _ in 0 ..< attempts {
 			crosswordsGenerator.generate()
 			let result = crosswordsGenerator.result
 			
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
 		
 		var bestResult: Array<CrosswordsGenerator.Word> = Array()
 		let startTime = NSDate()
-		let timeInterval: NSTimeInterval = 3
+		let timeInterval: TimeInterval = 3
 		
 		while (fabs(startTime.timeIntervalSinceNow) < timeInterval) {
 			crosswordsGenerator.generate()
@@ -87,7 +87,7 @@ class ViewController: UIViewController {
 			Generate one crossword with 'fill all words' mode
 			---------------------------------------------------------------------- */
 		
-		/*let crosswordsGenerator = CrosswordsGenerator(columns: 15, rows: 15, words: ["beijing", "havana", "rome", "paris", "amsterdam"])
+		/*let crosswordsGenerator = CrosswordsGenerator(columns: 15, rows: 10, words: ["beijing", "havana", "rome", "paris", "amsterdam"])
 		crosswordsGenerator.fillAllWords = true
 		crosswordsGenerator.generate()
 		
@@ -111,7 +111,7 @@ class ViewController: UIViewController {
 		var bestResult: Array<CrosswordsGenerator.Word> = Array()
 		let attempts = 1
 		
-		for var i: Int = 0; i < attempts; ++i {
+		for _ in 0 ..< attempts {
 			crosswordsGenerator.generate()
 			let result = crosswordsGenerator.result
 			
