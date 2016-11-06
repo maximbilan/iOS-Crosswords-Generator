@@ -15,7 +15,7 @@ Swift 2.3:
 pod 'CrosswordsGenerator', '~> 0.2.3'
 
 Swift 3.0:
-pod 'CrosswordsGenerator', '~> 0.3.0'
+pod 'CrosswordsGenerator'
 </pre>
 
 <b>Manual:</b>
