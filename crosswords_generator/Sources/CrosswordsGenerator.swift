@@ -154,7 +154,7 @@ open class CrosswordsGenerator {
 				for column: Int in 0 ..< columns {
 					colc += 1
 					
-					let cell = grid![row, column]
+					let cell = grid![column, row]
 					if String(letter) == cell {
 						if rowc - glc > 0 {
 							if ((rowc - glc) + word.lengthOfBytes(using: String.Encoding.utf8)) <= rows {
@@ -250,7 +250,7 @@ open class CrosswordsGenerator {
 		for direction in directions {
 			for i: Int in 1 ..< rows - 1 {
 				for j: Int in 1 ..< columns - 1 {
-					if grid![i, j] == emptySymbol {
+					if grid![j, i] == emptySymbol {
 						let c = j + 1
 						let r = i + 1
 						let score = checkFitScore(c, row: r, direction: direction, word: word)
@@ -359,11 +359,11 @@ open class CrosswordsGenerator {
 	}
 	
 	func setCell(_ column: Int, row: Int, value: String) {
-		grid![row - 1, column - 1] = value
+		grid![column - 1, row - 1] = value
 	}
  
 	func getCell(_ column: Int, row: Int) -> String{
-		return grid![row - 1, column - 1]
+		return grid![column - 1, row - 1]
 	}
 	
 	func checkIfCellClear(_ column: Int, row: Int) -> Bool {
@@ -404,7 +404,7 @@ open class CrosswordsGenerator {
 		var column = 0
 		for i in 0 ..< rows {
 			for j in 0 ..< columns {
-				if grid![i, j] != emptySymbol {
+				if grid![j, i] != emptySymbol {
 					if j > column {
 						column = j
 					}
@@ -418,7 +418,7 @@ open class CrosswordsGenerator {
 		var row = 0
 		for i in 0 ..< rows {
 			for j in 0 ..< columns {
-				if grid![i, j] != emptySymbol {
+				if grid![j, i] != emptySymbol {
 					if i > row {
 						row = i
 					}
@@ -432,7 +432,7 @@ open class CrosswordsGenerator {
 		var count = 0
 		for i in 0 ..< rows {
 			for j in 0 ..< columns {
-				if grid![i, j] != emptySymbol {
+				if grid![j, i] != emptySymbol {
 					count += 1
 				}
 			}
@@ -461,7 +461,7 @@ open class CrosswordsGenerator {
 		for i in 0 ..< rows {
 			var s = ""
 			for j in 0 ..< columns {
-				s += grid![i, j]
+				s += grid![j, i]
 			}
 			print(s)
 		}
