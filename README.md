@@ -1,5 +1,11 @@
 # Crosswords Generator
 
+[![Version](https://img.shields.io/cocoapods/v/CrosswordsGenerator.svg?style=flat)](http://cocoadocs.org/docsets/CrosswordsGenerator)
+[![License](https://img.shields.io/cocoapods/l/CrosswordsGenerator.svg?style=flat)](http://cocoadocs.org/docsets/CrosswordsGenerator)
+[![Platform](https://img.shields.io/cocoapods/p/CrosswordsGenerator.svg?style=flat)](http://cocoadocs.org/docsets/CrosswordsGenerator)
+[![CocoaPods](https://img.shields.io/cocoapods/dt/CrosswordsGenerator.svg)](https://cocoapods.org/pods/CrosswordsGenerator)
+[![CocoaPods](https://img.shields.io/cocoapods/dm/CrosswordsGenerator.svg)](https://cocoapods.org/pods/CrosswordsGenerator)
+
 Simple algorithm for generating crosswords with <i>Swift</i>.<br>
 Based on <a href="http://bryanhelmig.com/python-crossword-puzzle-generator/"> Python Crossword Puzzle Generator.</a>
 
