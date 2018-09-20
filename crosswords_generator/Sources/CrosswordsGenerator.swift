@@ -145,7 +145,7 @@ open class CrosswordsGenerator {
 		var coordlist = Array<(Int, Int, Int, Int, Int)>()
 		var glc = -1
 		
-		for letter in word.characters {
+		for letter in word {
 			glc += 1
 			var rowc = 0
 			for row: Int in 0 ..< rows {
@@ -282,7 +282,7 @@ open class CrosswordsGenerator {
 		var count = 1
 		var score = 1
 		
-		for letter in word.characters {
+		for letter in word {
 			let activeCell = getCell(c, row: r)
 			if activeCell == emptySymbol || activeCell == String(letter) {
 				
@@ -386,7 +386,7 @@ open class CrosswordsGenerator {
 			var c = column
 			var r = row
 			
-			for letter in word.characters {
+			for letter in word {
 				setCell(c, row: r, value: String(letter))
 				if direction == 0 {
 					c += 1
