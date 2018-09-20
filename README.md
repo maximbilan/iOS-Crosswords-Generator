@@ -14,13 +14,6 @@ Based on <a href="http://bryanhelmig.com/python-crossword-puzzle-generator/"> Py
 <b>CocoaPods:</b>
 
 <pre>
-Swift 2.2:
-pod 'CrosswordsGenerator', '~> 0.1.3'
-
-Swift 2.3:
-pod 'CrosswordsGenerator', '~> 0.2.3'
-
-Swift 3.0:
 pod 'CrosswordsGenerator'
 </pre>
 
