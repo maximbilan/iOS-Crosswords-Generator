@@ -48,7 +48,7 @@ public struct Word {
 }
 </pre>
 
-Sample of working:
+The sample of working:
 
 <pre>
 --- Words ---
